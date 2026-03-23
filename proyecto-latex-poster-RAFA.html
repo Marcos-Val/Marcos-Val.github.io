@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAFA Scientific Poster | Marcos Val</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Container adjustment to prevent overflow */
+        .poster-container {
+            width: 100%;
+            max-width: 100%; 
+            margin-top: 30px;
+            text-align: center;
+            background-color: #f1f3f5;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #dee2e6;
+            /* Critical: Includes padding in the width calculation */
+            box-sizing: border-box; 
+            overflow: hidden; 
+        }
+        
+        .poster-image {
+            display: block;
+            width: 100%; 
+            height: auto;
+            /* Limits the image size so it doesn't look blurry if the card is too wide */
+            max-width: 800px; 
+            margin: 0 auto;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .poster-image:hover {
+            /* Reduced scale to prevent edge clipping during zoom */
+            transform: scale(1.01);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 25px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .download-btn:hover {
+            background-color: #34495e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RAFA Scientific Poster</h1>
+        <a href="index.html" style="color: white; text-decoration: none;">← Back to Home</a>
+    </header>
+
+    <main class="contenedor-proyectos">
+        <section class="tarjeta">
+            <h2>Scientific Research & LaTeX Typesetting</h2>
+            <p>This project showcases a scientific poster presented at the <strong>RAFA</strong> (Reunión Anual de la Asociación Física Argentina) conference. The research focuses on complex physical phenomena, requiring precise data visualization and academic formatting. The entire document was typeset using <strong>LaTeX</strong>, ensuring high-quality mathematical notation and professional layout standards.</p>
+            
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+            <div style="text-align: center;">
+                <h3>Poster Preview</h3>
+                <p style="font-size: 0.9em; color: #666;">Click the image to open the full-resolution PDF in a new tab.</p>
+            </div>
+
+            <div class="poster-container">
+                <a href="Images/RAFA/Poster_RAFA.pdf" target="_blank" rel="noopener noreferrer">
+                    <img src="Images/RAFA/Poster_RAFA.jpg" alt="RAFA Scientific Poster Preview" class="poster-image">
+                </a>
+                
+                <br>
+                <a href="Images/RAFA/Poster_RAFA.pdf" download class="download-btn">
+                    ↓ Download Full PDF
+                </a>
+            </div>
+
+        </section>
+    </main>
+    
+    <a href="index.html" class="boton-volver-lateral" id="backToHomeBtn">
+        <span style="font-size: 1.1em;">←</span> Back to Home
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>

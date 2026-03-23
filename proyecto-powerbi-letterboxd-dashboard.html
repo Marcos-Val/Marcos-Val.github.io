@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letterboxd Dashboard | Marcos Val</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Letterboxd Dashboard</h1>
+        <a href="index.html" style="color: white; text-decoration: none;">← Back to Home</a>
+    </header>
+
+    <main class="contenedor-proyectos">
+        <section class="tarjeta">
+            <h2>Project Overview</h2>
+            <p>This project explores user rating behaviors and statistical anomalies within the Letterboxd movie app. The workflow involved a complete data pipeline: <strong>Python</strong> was used for data extraction, cleaning, and preliminary exploratory data analysis (EDA). <strong>SQL</strong> handled the structuring and necessary querying of the relational database. Finally, <strong>Power BI</strong> was utilized for advanced data modeling, DAX measure creation, and the design of the interactive visualizations shown below.</p>
+            
+            <div style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border-radius: 8px; border-left: 5px solid #ffc107;">
+                <p style="font-size: 0.9em; color: #664d03; margin: 0;">
+                    <strong>Please note:</strong> Due to Microsoft Power BI's security limitations, the interactive dashboard cannot be fully embedded here without a prior Microsoft account login. The live interactive dashboard is available at the very bottom of this page for authorized users, but you can explore high-resolution screenshots and insights of the project below.
+                </p>
+            </div>
+            
+            <div style="margin-top: 40px;">
+                <div class="project-feature">
+                    <div class="project-feature-image">
+                        <img src="Images/letterboxd_dashboard/Letterboxd_menu.png" alt="Letterboxd Dashboard Main Menu">
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>1. Example Title 1</h3>
+                        <p>This is a placeholder text. Here you can explain what this specific tab of the dashboard shows, the DAX measures used, or the insights discovered regarding movie ratings.</p>
+                    </div>
+                </div>
+
+                <div class="project-feature reverse">
+                    <div class="project-feature-image">
+                        <img src="Images/letterboxd_dashboard/Ratting_diff.png" alt="Letterboxd Rating difference">
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>2. Example Title 2</h3>
+                        <p>This is a placeholder text. Because of the "reverse" class, this image will appear on the right side on wide screens, creating a nice zig-zag reading flow for the user.</p>
+                    </div>
+                </div>
+
+                <div class="project-feature">
+                    <div class="project-feature-image">
+                        <img src="Images/letterboxd_dashboard/Oscar_winners.png" alt="Letterboxd Oscar nominees">
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>3. Example Title 3</h3>
+                        <p>This is a placeholder text. Talk about the data modeling here, how you connected the tables, or specific statistical anomalies you found in the Letterboxd dataset.</p>
+                    </div>
+                </div>
+
+                <div class="project-feature reverse">
+                    <div class="project-feature-image">
+                        <img src="Images/letterboxd_dashboard/Country_data.png" alt="Letterboxd Country data">
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>4. Example Title 4</h3>
+                        <p>This is a placeholder text. Conclude your analysis here, highlighting the final takeaways or how Python, SQL, and Power BI worked together to achieve this result.</p>
+                    </div>
+                </div>
+
+                <div class="project-feature">
+                    <div class="project-feature-image">
+                        <img src="Images/letterboxd_dashboard/Valley.png" alt="Letterboxd Valley theory">
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>5. Example Title 5</h3>
+                        <p>This is a placeholder text. Talk about the data modeling here, how you connected the tables, or specific statistical anomalies you found in the Letterboxd dataset.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 50px 0;">
+
+            <h2>Interactive Dashboard</h2>
+            <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">Requires Microsoft login authorization to view live data.</p>
+            
+            <div style="width: 100%; height: 600px; border-radius: 8px; overflow: hidden; border: 1px solid #ddd;">
+                <iframe title="letterboxd_dashboard" width="100%" height="100%" src="https://app.powerbi.com/reportEmbed?reportId=e5cd7d32-9e09-41fc-b500-5a2f62765814&autoAuth=true&ctid=e13f1e52-6e32-4972-82ca-697420ee3c98" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
+            
+        </section>
+    </main>
+    
+    <a href="index.html" class="boton-volver-lateral" id="backToHomeBtn">
+        <span style="font-size: 1.1em;">←</span> Back to Home
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>

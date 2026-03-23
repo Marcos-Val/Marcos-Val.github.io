@@ -1,0 +1,133 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.contenedor-proyectos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.tarjeta {
+    background-color: white;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.project-card-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.project-image-container {
+    flex: 0 0 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 1; /* Por defecto a la izquierda */
+}
+
+.espacio-interactivo {
+    background-color: #e9ecef;
+    border: 2px dashed #ced4da;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-content-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    order: 2; /* Por defecto a la derecha */
+}
+
+.project-content-text h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 1.5rem;
+}
+
+/* --- Lógica de Intercalado (Corregida sin bloques vacíos) --- */
+
+/* En las tarjetas pares (2, 4...), la imagen pasa a la derecha (orden 2) */
+.project-card-layout:nth-child(even) .project-image-container {
+    order: 2;
+}
+
+/* En las tarjetas pares, el texto pasa a la izquierda (orden 1) */
+.project-card-layout:nth-child(even) .project-content-text {
+    order: 1;
+    text-align: right;
+    align-items: flex-end;
+}
+
+.placeholder {
+    color: #6c757d;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+
+.boton-proyecto {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.boton-proyecto:hover {
+    background-color: #2980b9;
+}
+
+/* --- Nuevos estilos para enlaces de proyectos --- */
+
+/* Quitar subrayado y color azul por defecto de los enlaces */
+.link-proyecto, .link-titulo-proyecto {
+    text-decoration: none;
+    color: inherit; /* Hereda el color del texto del contenedor */
+    display: block; /* Para que ocupe todo el contenedor en la imagen */
+}
+
+/* Estilo específico para el título embebido en el enlace */
+.link-titulo-proyecto h3 {
+    margin: 0; /* Asegurar que no haya márgenes extraños */
+    transition: color 0.2s; /* Suavizar el cambio de color */
+}
+
+/* Efecto hover (pasar el mouse) sobre el título o la imagen */
+.link-titulo-proyecto:hover h3,
+.link-proyecto:hover .espacio-interactivo {
+    color: #3498db; /* Cambia el color del título al pasar el mouse */
+    border-color: #3498db; /* Cambia el color del borde del cuadrado */
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letterboxd Movie Filter | Marcos Val</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Letterboxd Movie Filter</h1>
+        <a href="index.html" style="color: white; text-decoration: none;">← Back to Home</a>
+    </header>
+
+    <main class="contenedor-proyectos">
+        <section class="tarjeta">
+            <h2>Project Overview</h2>
+            <p>This project showcases a dynamic movie filtering tool designed to help users navigate complex cinematic datasets. The underlying data was gathered using custom <strong>Python</strong> scripts to scrape and clean movie information directly from the Letterboxd platform. The structured data was then managed using <strong>SQL</strong> queries before being imported into <strong>Power BI</strong>. The final dashboard acts as an interactive search engine, using advanced DAX measures to allow users to filter films by genre, ratings, release decades, and specific user engagement metrics.</p>
+            
+            <div style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border-radius: 8px; border-left: 5px solid #ffc107;">
+                <p style="font-size: 0.9em; color: #664d03; margin: 0;">
+                    <strong>Please note:</strong> Due to Microsoft Power BI's security limitations, the interactive dashboard cannot be fully embedded here without a prior Microsoft account login. The live interactive dashboard is available at the very bottom of this page for authorized users, but you can explore high-resolution screenshots of the tool below.
+                </p>
+            </div>
+            
+            <div style="margin-top: 50px;">
+                <div class="project-feature">
+                    <div class="project-feature-image">
+                        <img src="Images/letterboxd_movie_filter/movie_filter.png" alt="Letterboxd Movie Filter Interface">
+                    </div>
+                    <div class="project-feature-text">
+                        <p>This is a placeholder text for your movie filter description. You can use this space to explain how the user interface works, which specific DAX parameters were used to create the dynamic filtering, or how the Python scraping script was optimized to gather this dataset. Notice that there is no title here, allowing the text to flow directly next to the interface preview.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 50px 0;">
+
+            <h2>Interactive Filter Dashboard</h2>
+            <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">Requires Microsoft login authorization to view live data.</p>
+            
+            <div style="width: 100%; height: 600px; border-radius: 8px; overflow: hidden; border: 1px solid #ddd;">
+                <iframe title="letterboxd_movie_filter" width="100%" height="100%" src="https://aka.ms/AA10ava3" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
+            
+            <div style="margin-top: 15px; text-align: center;">
+                <a href="https://aka.ms/AA10ava3" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold; font-size: 0.9em;">
+                    → If the dashboard doesn't load above, click here to open it in a new tab
+                </a>
+            </div>
+
+        </section>
+    </main>
+    
+    <a href="index.html" class="boton-volver-lateral" id="backToHomeBtn">
+        <span style="font-size: 1.1em;">←</span> Back to Home
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const backButton = document.getElementById("backToHomeBtn");
     if (backButton) {
         window.addEventListener("scroll", function() {
+            // Calculamos el 10% del alto de la ventana visible
             const scrollThreshold = window.innerHeight * 0.10;
             if (window.scrollY > scrollThreshold) {
                 backButton.classList.add("mostrar");

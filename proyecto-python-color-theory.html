@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Theory for Graphs | Marcos Val</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ========================================== */
+        /* 1. ESTOS SON LOS ESTILOS PARA EL BOTÓN     */
+        /* ========================================== */
+        .download-btn {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .download-btn:hover {
+            background-color: #34495e;
+            transform: scale(1.02);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -12,15 +33,34 @@
         <a href="index.html" style="color: white; text-decoration: none;">← Volver al inicio</a>
     </header>
 
-    <main class="contenedor-proyectos">
-        <section class="tarjeta">
-            <h2>Análisis con Python</h2>
-            <p>Exploración de paletas cromáticas y jerarquía visual aplicada a la visualización de datos científicos utilizando librerías como Matplotlib y Seaborn.</p>
-            
-            <div style="width: 100%; height: 800px; border: 1px solid #ced4da; border-radius: 8px; overflow: hidden; margin-top: 20px;">
-                <iframe src="Proyectos/Color_theory_for_graphs.html" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
-        </section>
-    </main>
+   <main class="contenedor-proyectos">
+    <section class="tarjeta">
+        <h2>Abstract</h2>
+        
+        <p>Selecting an appropriate color palette is often one of the most repetitive and time-consuming aspects of data visualization. While impactful visuals are essential for effectively communicating results, manually finding cohesive color schemes can stall the analytical process.</p>
+
+        <p>The following code addresses this issue by providing an efficient, automated approach to palette generation. It offers a practical solution by generating multiple randomized color options tailored for different visualization needs. However, these selections are not purely stochastic; the underlying functions are grounded in fundamental color theory. By utilizing complementary relationships, monochromatic scales, and targeted interpolations, the code ensures that the resulting outputs remain visually cohesive.</p>
+
+        <p>Whether a continuous gradient is required for a heatmap or a distinct set of contrasting colors for a line graph, this tool generates a variety of ready-to-test palettes, effectively streamlining the design process for any data project.</p>
+        
+        <div style="width: 100%; height: 800px; border: 1px solid #ced4da; border-radius: 8px; overflow: hidden; margin-top: 20px;">
+            <iframe src="Proyectos/Color_theory_for_graphs.html" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="Proyectos/Color_theory_for_graphs.ipynb" download class="download-btn">
+                ↓ Download .ipynb File
+            </a>
+        </div>
+
+    </section>
+</main>
+
+    <a href="index.html" class="boton-volver-lateral" id="backToHomeBtn">
+        <span style="font-size: 1.1em;">←</span> Back to Home
+    </a>
+
+    <script src="script.js"></script>
+
 </body>
 </html>

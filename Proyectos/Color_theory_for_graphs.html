@@ -2878,8 +2878,13 @@ input::placeholder {
   line-height: 14px;
   padding: 0 25px 0 10px;
   text-align: left;
+  
+  /* Prefijos para compatibilidad con navegadores antiguos */
   -moz-appearance: none;
   -webkit-appearance: none;
+  
+  /* Propiedad estándar (esto elimina la advertencia) */
+  appearance: none;
 }
 
 .jp-HTMLSelect.jp-DefaultStyle select:disabled {
@@ -7236,7 +7241,8 @@ all of MD as it is not optimized for dense, information rich UIs.
 <style type="text/css">
 /* Force rendering true colors when outputing to pdf */
 * {
-  -webkit-print-color-adjust: exact;
+  -webkit-print-color-adjust: exact; /* Para Chrome, Safari, Edge antiguos */
+  print-color-adjust: exact;         /* Propiedad estándar (Elimina la advertencia) */
 }
 
 /* Misc */

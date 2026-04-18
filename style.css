@@ -380,3 +380,110 @@ header {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* ========================================================== */
+/* SECCIÓN: All Projects & Botones Centrales                  */
+/* ========================================================== */
+
+.contenedor-boton-central {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-all-projects {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 35px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-all-projects:hover {
+    background-color: #1a252f;
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* Layout específico para all-projects.html */
+.contenedor-todos-proyectos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 20px;
+    max-width: 800px; /* Un poco más angosto que el index principal */
+    margin: 0 auto;
+}
+
+.contenedor-todos-proyectos h2 {
+    color: #2c3e50;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Tarjeta miniatura estilo lista */
+.tarjeta-mini {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    width: 100%;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: inherit;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    border: 2px solid transparent; /* Para el hover */
+}
+
+.tarjeta-mini:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    border-color: #3498db;
+}
+
+.tarjeta-mini-texto {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.tarjeta-mini-texto h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.3rem;
+    transition: color 0.2s ease;
+}
+
+.tarjeta-mini:hover .tarjeta-mini-texto h3 {
+    color: #3498db;
+}
+
+.tarjeta-mini-img {
+    flex: 0 0 150px; /* Ancho fijo para el recuadro de la imagen */
+    height: 100px; /* Alto fijo */
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #ffffff; /* Ahora el fondo es blanco */
+    border: 1px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tarjeta-mini-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Contain evita que se corten los bordes de los logos/posters */
+}

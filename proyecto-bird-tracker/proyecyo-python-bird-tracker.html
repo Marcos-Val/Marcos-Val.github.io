@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bird Migration Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #ffffff; 
+            color: #000000; 
+            overflow-y: auto; 
+        }
+
+        /* ---------------------------------------------------
+           Encabezado
+           --------------------------------------------------- */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2rem;
+        }
+
+        .page-content {
+            padding: 20px;
+        }
+
+        .contenedor-texto {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .contenedor-proyectos {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ---------------------------------------------------
+           SECCIÓN: Tarjeta de Introducción
+           --------------------------------------------------- */
+        .tarjeta {
+            background-color: #ffffff; 
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            padding: 25px 30px;
+            margin-bottom: 30px; 
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        
+        .tarjeta h2 {
+            margin-top: 0;
+            color: #000000; 
+            font-size: 1.8rem;
+        }
+        
+        .tarjeta p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .tarjeta a {
+            color: #00a8e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .tarjeta a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #00a8e8;
+            color: #ffffff !important;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none !important;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .download-btn:hover {
+            background-color: #008ecc;
+        }
+
+        /* ---------------------------------------------------
+           DASHBOARD (La Zona Negra)
+           --------------------------------------------------- */
+        .dashboard-container {
+            display: flex;
+            gap: 15px;
+            height: 90vh; 
+            background-color: #050301; 
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        #plot-container {
+            flex: 1.2;
+            background-color: transparent; 
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        #right-panel {
+            flex: 1.8; 
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-height: 0; 
+        }
+
+        #info-container {
+            flex: 0 0 auto; 
+            background-color: transparent; 
+            color: white; 
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        #gif-container {
+            flex: 1; 
+            background-color: transparent; 
+            border-radius: 8px;
+            display: flex;
+            position: relative;
+            padding: 15px; 
+            min-height: 0; 
+        }
+
+        .placeholder-text, .error-text { 
+            color: #888; 
+            margin: auto; 
+            text-align: center;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .error-text { color: #e74c3c; display: none; }
+
+        #grid-wrapper {
+            display: none; 
+            width: 100%;
+            height: 100%;
+            gap: 15px;
+            min-height: 0;
+            min-width: 0;
+        }
+
+        .gif-item {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            border-radius: 6px;
+            min-height: 0;
+            min-width: 0;
+            background-color: #050301; 
+        }
+
+        #gif-map { grid-area: map; background-color: #050301; }
+        #gif-tracker { grid-area: tracker; background-color: #050301; border: none; }
+        #gif-flags { grid-area: flags; background-color: #050301; border: none; }
+
+        .layout-vertical {
+            display: grid !important;
+            grid-template-columns: 1.3fr 1fr; 
+            grid-template-rows: 0.7fr 1.3fr;  
+            grid-template-areas: "map tracker" "map flags";
+        }
+
+        .layout-square {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 0.7fr 1.3fr; 
+            grid-template-areas: "map tracker" "map flags";
+        }
+
+        .layout-horizontal {
+            display: grid !important;
+            grid-template-columns: 0.7fr 1.3fr; 
+            grid-template-rows: 1.3fr 1fr;      
+            grid-template-areas: "map map" "tracker flags";
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Animal Tracker</h1>
+        <a href="../index.html" style="color: white; text-decoration: none;">← Volver al inicio</a>
+    </header>
+
+    <div class="page-content">
+        <div class="contenedor-texto">
+            <section class="tarjeta">
+                <h2>Project </h2>
+                <p>This small project consists of visualizing how different individuals of the species <a href="https://en.wikipedia.org/wiki/Lesser_black-backed_gull" target="_blank">Larus fuscus</a> migrate across Europe over time, visiting a diverse number of countries. This was made possible thanks to <a href="https://www.movebank.org/" target="_blank">Movebank</a>, an online database hosted by the <a href="https://www.mpg.de/en" target="_blank">Max Planck Institute for Ornithology</a>. It is designed for the study of different migratory species, ensuring their safety, understanding, and protection.</p>
+                <p>The tracking databases belong to researchers from all over the world who actively collaborate, either by adding information or conducting different studies based on several of these datasets. Movement data from different individuals of the same species helps to understand how they navigate local areas, migrate across different territories, and evolve. To track each of these individuals, various techniques are used such as Radio Telemetry, Argos Doppler, Acoustic telemetry, GPS, etc. In the case of our database, we only contain data obtained via GPS.</p>
+                <p>If you want to look at these data in more detail, feel free to download them using the button below.</p>
+                
+                <div class="btn-container">
+                    <a href="migration_original.csv" download class="download-btn">Download Dataset</a>
+                </div>
+            </section>
+        </div>
+
+        <div class="contenedor-proyectos">
+            <div class="dashboard-container">
+                <div id="plot-container"></div>
+                
+                <div id="right-panel">
+                    <div id="info-container">
+                        <span id="info-text" style="color: #888;">Select a point to view details</span>
+                    </div>
+
+                    <div id="gif-container">
+                        <p id="placeholder" class="placeholder-text">Select a point to view animations</p>
+                        <p id="error-message" class="error-text">No files available for this ID</p>
+
+                        <div id="grid-wrapper">
+                            <video id="gif-map" class="gif-item" muted playsinline></video>
+                            <video id="gif-tracker" class="gif-item" muted playsinline></video>
+                            <video id="gif-flags" class="gif-item" muted playsinline></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let lookupTable = {}; 
+        let timeoutReinicio; 
+        let timeoutCargaSeguridad; 
+
+        Papa.parse("lookup_urls_aves.csv", {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            transformHeader: function(h) { return h.trim(); },
+            complete: function(urlResults) {
+                urlResults.data.forEach(row => {
+                    if(row.id) {
+                        const cleanId = String(parseInt(row.id, 10));
+                        lookupTable[cleanId] = row;
+                    }
+                });
+
+                // CORRECCIÓN: Volvemos a decirle al script que lea el archivo resumido para el gráfico
+                Papa.parse("bird_tracker.csv", {
+                    download: true,
+                    header: true,
+                    dynamicTyping: true,
+                    complete: function(results) {
+                        const data = results.data.filter(row => row.total_distance != null || row['Distancia Total (km)'] != null);
+                        const ids = data.map(row => row.id || row.Individuo);
+                        const xVal = data.map(row => row.flight_time || row['Tiempo de Viaje (Días)']);
+                        const yVal = data.map(row => row.total_distance || row['Distancia Total (km)']);
+
+                        const trace = {
+                            x: xVal, y: yVal, customdata: ids,
+                            mode: 'markers', type: 'scatter',
+                            marker: { 
+                                size: 10, 
+                                color: '#1f77b4', 
+                                opacity: 0.8, 
+                                line: {width: 1, color: '#050301'} 
+                            },
+                            hovertemplate: '<b>ID:</b> %{customdata}<br><b>Time:</b> %{x} days<br><b>Distance:</b> %{y} km<extra></extra>'
+                        };
+
+                        const layout = {
+                            title: { text: 'Flight Time vs Total Distance', font: { color: 'white' } },
+                            paper_bgcolor: '#050301',
+                            plot_bgcolor: '#050301',
+                            xaxis: { 
+                                title: { text: 'Time (Days)', font: { color: 'white' } },
+                                tickfont: { color: 'white' },
+                                gridcolor: 'rgba(255, 255, 255, 0.1)',
+                                zerolinecolor: 'rgba(255, 255, 255, 0.2)'
+                            },
+                            yaxis: { 
+                                title: { text: 'Total Distance (km)', font: { color: 'white' } },
+                                tickfont: { color: 'white' },
+                                gridcolor: 'rgba(255, 255, 255, 0.1)',
+                                zerolinecolor: 'rgba(255, 255, 255, 0.2)'
+                            },
+                            hoverlabel: {
+                                bgcolor: 'white',
+                                font: { color: 'black' },
+                                bordercolor: '#050301'
+                            },
+                            hovermode: 'closest',
+                            margin: { t: 50, b: 50, l: 60, r: 20 }
+                        };
+
+                        Plotly.newPlot('plot-container', [trace], layout, {scrollZoom: true, responsive: true});
+
+                        document.getElementById('plot-container').on('plotly_click', function(eventData) {
+                            const rawId = eventData.points[0].customdata;
+                            const selectedId = String(parseInt(rawId, 10));
+                            
+                            document.getElementById('info-text').innerHTML = `Selected Individual ID: <span style="color: #1f77b4;">${selectedId}</span>`;
+                            document.getElementById('info-text').style.color = 'white';
+                            
+                            const grid = document.getElementById('grid-wrapper');
+                            const err = document.getElementById('error-message');
+                            const ph = document.getElementById('placeholder');
+
+                            clearTimeout(timeoutReinicio);
+                            clearTimeout(timeoutCargaSeguridad);
+
+                            const videosDelAve = lookupTable[selectedId];
+
+                            if (videosDelAve && videosDelAve.map_url && videosDelAve.distance_url && videosDelAve.flags_url) {
+                                ph.innerText = "Loading animations...";
+                                ph.style.display = 'block';
+                                err.style.display = 'none';
+                                grid.style.display = 'none';
+                                grid.className = '';
+
+                                const vidMap = document.getElementById('gif-map');
+                                const vidTracker = document.getElementById('gif-tracker');
+                                const vidFlags = document.getElementById('gif-flags');
+                                const videos = [vidMap, vidTracker, vidFlags];
+
+                                let videosCargados = 0;
+                                let videosTerminados = 0;
+
+                                timeoutCargaSeguridad = setTimeout(() => {
+                                    if (videosCargados < 3) {
+                                        const fallaron = videos.filter(v => !v.isLoaded).map(v => v.src.split('/').pop());
+                                        ph.style.display = 'none';
+                                        err.innerText = `Timeout (30s). Failed: ${fallaron.join(', ')}`;
+                                        err.style.display = 'block';
+                                    }
+                                }, 30000);
+
+                                function checkCargaCompleta() {
+                                    videosCargados++;
+                                    if (videosCargados === 3) {
+                                        clearTimeout(timeoutCargaSeguridad); 
+                                        
+                                        const tiempoMaestro = vidMap.duration;
+                                        if (tiempoMaestro > 0) { 
+                                            vidTracker.playbackRate = vidTracker.duration / tiempoMaestro;
+                                            vidFlags.playbackRate = vidFlags.duration / tiempoMaestro;
+                                        }
+
+                                        const ratio = vidMap.videoWidth / vidMap.videoHeight;
+                                        if (ratio < 0.85) grid.classList.add('layout-vertical');
+                                        else if (ratio > 1.15) grid.classList.add('layout-horizontal');
+                                        else grid.classList.add('layout-square');
+
+                                        ph.style.display = 'none';
+                                        grid.style.display = 'grid';
+                                        
+                                        videos.forEach(v => v.play());
+                                    }
+                                }
+
+                                videos.forEach(vid => {
+                                    vid.isLoaded = false; 
+                                    vid.pause();
+                                    vid.removeAttribute('src'); 
+                                    vid.currentTime = 0;
+                                    vid.playbackRate = 1.0; 
+                                    
+                                    vid.onloadeddata = function() {
+                                        if (!vid.isLoaded) { 
+                                            vid.isLoaded = true;
+                                            checkCargaCompleta();
+                                        }
+                                    };
+
+                                    vid.onerror = function() {
+                                        clearTimeout(timeoutCargaSeguridad);
+                                        ph.style.display = 'none';
+                                        const filename = vid.src.split('/').pop();
+                                        err.innerText = `Browser native error reading: ${filename}`;
+                                        err.style.display = 'block';
+                                    };
+                                    
+                                    vid.onended = function() {
+                                        videosTerminados++;
+                                        if (videosTerminados === 3) {
+                                            videosTerminados = 0;
+                                            timeoutReinicio = setTimeout(() => {
+                                                videos.forEach(v => {
+                                                    v.currentTime = 0;
+                                                    v.play();
+                                                });
+                                            }, 5000); 
+                                        }
+                                    };
+                                });
+
+                                function procesarVideoUrl(url, aplicarFondo) {
+                                    if (!url) return "";
+                                    let finalUrl = String(url).trim().replace(/\.gif$/i, '.mp4');
+                                    if (aplicarFondo && finalUrl.includes('/upload/') && !finalUrl.includes('b_rgb:050301')) {
+                                        finalUrl = finalUrl.replace('/upload/', '/upload/b_rgb:050301/');
+                                    }
+                                    return finalUrl;
+                                }
+
+                                vidMap.src = procesarVideoUrl(videosDelAve.map_url, false);
+                                vidTracker.src = procesarVideoUrl(videosDelAve.distance_url, true);
+                                vidFlags.src = procesarVideoUrl(videosDelAve.flags_url, true);
+
+                                vidMap.load();
+                                vidTracker.load();
+                                vidFlags.load();
+
+                            } else {
+                                grid.style.display = 'none';
+                                ph.style.display = 'none';
+                                err.style.display = 'block';
+                                err.innerText = "No complete files for this ID";
+                                document.querySelectorAll('.gif-item').forEach(v => {
+                                    v.pause(); v.removeAttribute('src'); v.load();
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

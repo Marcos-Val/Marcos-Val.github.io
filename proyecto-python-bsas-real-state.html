@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Price Estimation | Marcos Val</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <header>
@@ -15,18 +17,63 @@
     <main class="contenedor-proyectos">
         <section class="tarjeta">
             <h2>Project Overview</h2>
-            <p>Este proyecto se centra en el análisis masivo de datos del mercado inmobiliario en la Ciudad Autónoma de Buenos Aires y el Gran Buenos Aires. El objetivo principal es desarrollar un modelo predictivo capaz de estimar el valor de mercado de las propiedades basándose en variables clave como ubicación georeferenciada, superficie y características constructivas.</p>
             
-            <div class="espacio-interactivo" style="height: 300px; margin: 20px 0;">
-                <img src="Images/Menu/bsas-real-state.png" alt="Analysis Map" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+            <p>Searching for houses or apartments to buy or rent is always a headache. Every time we visit a web portal where these types of properties are shown, we can find everything: from properties with exorbitant prices that do not match the quality offered, to apartments with a price consistent with what is shown but outside our budget range, and even rare occasions of seeing excellent offers that require a lot of extra work.</p>
+            
+            <p>For this reason, the main idea of this work was to collect information within a sales portal to study how different factors shown when categorizing a property can determine its price. These factors range from its location and size to the amenities the place may possess.</p>
+            
+            <p>To achieve this, more than 200,000 unique properties distributed between the Ciudad Autónoma de Buenos Aires (CABA) and its surroundings were collected. A vast variety of data was gathered for each property, including: prices, total surface, covered and uncovered area, neighborhood/locality, different types of amenities reported by the user, the selling agency, exact location in many cases, seller descriptions, etc. In summary, enough information was collected to recreate the page, but with the purpose of obtaining data solely for this study.</p>
+
+            
+            
+            <div style="overflow: auto; margin-bottom: 20px;">
+                <h3>Procedure and Summary of Results</h3>
+                <div style="float: right; margin-left: 20px; margin-bottom: 10px; width: 350px;">
+                    <img src="Images/real_state_bsas/map_bsas.png" alt="Property Price Map Buenos Aires" style="width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                </div>
+                
+                <p>One of the main statistics to value a property's price is its location and calculating its price per square meter (\(m^2\)). Throughout the world, there are places considered more or less expensive depending on a multitude of factors that go beyond this work. This image shows how these prices are distributed across CABA and its surroundings for the properties found in the dataset.</p>
+                
+                <p>A first analysis allows evaluating the average price per \(m^2\) for the different neighborhoods, differentiating between CABA and outer areas.</p>
+                
+                <p>If someone tried to estimate a property's price using only this metric, they would find that the margin of error is often enormous. While it is the first step in real estate appraisal, many other factors must be taken into account, such as the property's condition, the year it was built, and so on. Furthermore, the impact of these factors can vary significantly depending on the specific neighborhood or location.</p>
+                
+                <p>In the image below, only the average values per \(m^2\) were calculated without taking into account any other factors such as uncovered land, amenities, etc. For this, a model was created that allows considering many of these factors.</p>
+
             </div>
 
-            <h3>Key Methodologies</h3>
-            <ul>
-                <li><strong>Web Scraping:</strong> Extracción de datos de portales inmobiliarios utilizando Selenium y BeautifulSoup.</li>
-                <li><strong>Data Cleaning:</strong> Procesamiento de datasets de gran escala para eliminar outliers y valores nulos.</li>
-                <li><strong>Georeferencing:</strong> Uso de mapas interactivos y coordenadas para el análisis por barrios y comunas.</li>
-            </ul>
+            <div style="text-align: center; margin: 30px 0;">
+                <img src="Images/real_state_bsas/price_per_m2.png" alt="Gráfico de precio por metro cuadrado" style="max-width: 100%; height: auto; border-radius: 4px;">
+            </div>
+
+
+            <h3>Predictive Model</h3>
+            
+            <p>As expected, the value of a property does not only depend on where it is located and how many \(m^2\) it has. To make a much more precise estimation, one can use various factors that are usually provided by the user who publishes the property: if the apartment has uncovered land, a balcony, a terrace, if it has a garage or any other amenity; if the property has a certain level of seniority that can lead to wear and tear, as well as the current condition in which the property is found are some of the factors among others.</p>
+            
+            <p>This model allows making a <em>first-order</em> estimation taking these factors into account and performing statistics in each of the neighborhoods independently. The equation of this model is the following:</p>
+
+            <div style="text-align: center; margin: 25px 0; font-size: 1.2em;">
+                $$ P_{E} = {\left\langle {\mu_{\text{\$}/m^2}} \right\rangle}{\left[ {S_C}{\left( {1-0.1\delta_{S_U = 0}} \right) + 1.1S_U} \right]}{\left[ {1+\sum_i C_{\text{amenity}_i } + C_{\text{year}} + C_{\text{condition} }} \right]}$$
+            </div>
+
+            <p>This equation can be read in several blocks. The first considers the average value per \(m^2\) in each neighborhood and multiplies it by its covered, \(S_C\), and uncovered surface, \(S_U\) (which is considered slightly more expensive as long as there is covered land), penalizing those properties that do not have uncovered surface.</p>
+            
+            <p>The second block takes into account several factors discussed before that can increase or decrease the price of a property. In the case of amenities (\(C_{\text{amenity}}\)), more than 50 possible characteristics were analyzed, each with a different weight. It was also seen how the year the property was built could affect the price (\(C_{\text{year}}\)), where there are cases in which properties up to more than 150 years old were analyzed. Finally, the current state reported by the seller was taken into account (\(C_{\text{condition}}\)). As expected, not all of these coefficients have to behave similarly in each neighborhood and will influence in different ways.</p>
+
+            <p>Finally, to verify the approximate error committed by the model, the Mean Absolute Percentage Error (MAPE) was calculated, showing that on average the error committed in each neighborhood is \(18.89\%\) for CABA and \(30.24\%\) for the surroundings. The image below shows a histogram with this distribution of errors. This value is more than satisfactory as it allows seeing business opportunities or fair prices in properties taking into account the factors seen before.</p>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <img src="Images/real_state_bsas/MAPE_distribution.png" alt="MAPE Distribution Histogram" style="max-width: 80%; height: auto; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+            </div>
+
+            <h3>How to improve the project?</h3>
+            
+            <p>An interactive dashboard is currently in progress in which the user can see neighborhood by neighborhood the different properties with their characteristics and the comparison between the real and estimated price.</p>
+            
+            <p>Despite having a large amount of data, when performing statistics for each neighborhood independently, it is always better to have a greater number of properties to analyze as they allow for a reduction in error.</p>
+            
+            <p>Lastly, the possibility of improving the model by including or removing parameters to improve its estimation is always open.</p>
         </section>
     </main>
 

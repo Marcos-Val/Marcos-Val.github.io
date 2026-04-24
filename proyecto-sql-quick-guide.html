@@ -6,15 +6,16 @@
     <title>SQL Quick Guide | Marcos Val</title>
     <link rel="stylesheet" href="style.css">
     <style>
+/* Contenedor del índice con el nuevo fondo crema/arena */
         .poster-container {
             width: 100%;
             max-width: 100%; 
             margin-top: 30px;
             text-align: center;
-            background-color: #f1f3f5;
+            background-color: #EBE0C5; /* El color arena elegante */
             padding: 30px 20px;
             border-radius: 12px;
-            border: 1px solid #dee2e6;
+            border: 1px solid rgba(133, 79, 11, 0.2); /* Borde sutil marrón */
             box-sizing: border-box; 
             overflow: hidden; 
         }
@@ -35,20 +36,26 @@
             transform: translateY(-5px);
         }
 
+        /* Botón de descarga con la estética marrón/crema */
         .download-btn {
             display: inline-block;
             margin-top: 25px;
-            background-color: #2c3e50;
-            color: white;
+            background-color: #854F0B; /* Fondo marrón */
+            color: #F5E3BB; /* Letra crema */
+            border: 1px solid #854F0B;
             padding: 12px 30px;
-            border-radius: 6px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            transition: background-color 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .download-btn:hover {
-            background-color: #34495e;
+            background-color: #F5E3BB; /* Se invierte al crema */
+            color: #8d5614; /* Letra marrón */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         .wip-notice {
@@ -107,13 +114,13 @@
     </style>
 </head>
 <body>
-    <header>
+    <header class="header-proyecto">
         <h1>SQL Quick Guide</h1>
-        <a href="index.html" style="color: white; text-decoration: none;">← Back to Home</a>
+        <a href="index.html" class="btn-back-header">← Back to Home</a>
     </header>
 
     <main class="contenedor-proyectos">
-        <section class="tarjeta">
+        <section class="tarjeta proyecto-articulo">
         <h2>Project Overview</h2>
         <p>
             This quick guide is designed to help begginers users learn or find SQL command information efficiently. It covers a wide range of operations, from basic Data Definition Language (DDL) and Data Manipulation Language (DML) commands to advanced analytical functions and relational logic. 
@@ -132,7 +139,7 @@
             <li><strong>Control Flow Logic:</strong> Integration of programming logic within queries using "CASE" and "IF" statements to handle conditional data transformations.</li>
         </ul>
 
-        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+        <hr style="border: 0; border-top: 1px transparent; margin: 20px 0;">
             <div class="guide-intro-text">
                 <h3>What's Inside?</h3>
                 <p>The following image provides a detailed overview of the topics and commands currently covered in this guide, ranging from fundamental structures to advanced data manipulation techniques.</p>

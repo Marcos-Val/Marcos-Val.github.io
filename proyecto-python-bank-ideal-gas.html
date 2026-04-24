@@ -5,19 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Modeling via Statistical Mechanics | Marcos Val</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .download-btn {
+            display: inline-block;
+            margin-top: 25px;
+            background-color: #854F0B; /* Fondo marrón */
+            color: #F5E3BB; /* Letra crema */
+            border: 1px solid #854F0B;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #F5E3BB; /* Se invierte al crema */
+            color: #8d5614; /* Letra marrón */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <header class="header-proyecto">
         <h1>Modeling a Bank using Ideal Gases</h1>
-        <a href="index.html" style="color: white; text-decoration: none;">← Back to Home</a>
+        <a href="all-projects-menu.html" class="btn-back-header">← Back to All Projects</a>
     </header>
 
     <main class="contenedor-proyectos">
-        <section class="tarjeta">
+        <section class="tarjeta proyecto-articulo">
             <h2>Project Overview</h2>
             <p>This project explores the fascinating intersection of physical sciences and financial data modeling. By treating banking transactions and queuing systems as particles in a closed system, we can apply the principles of <strong>statistical mechanics</strong> and the <strong>ideal gas law</strong> to predict dynamic banking behaviors. The entire simulation, data generation, and visualization were programmed using <strong>Python</strong>.</p>
             
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+            <hr style="border: 0; border-top: 1px transparent; margin: 10px 0;">
 
             <h3>Jupyter Notebook Simulation</h3>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">The interactive code, mathematical derivations, and resulting visualizations are documented below.</p>
@@ -27,7 +49,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 25px;">
-                <a href="Proyectos/modeling-bank-using-ideal-gas.ipynb" download class="boton-proyecto" style="text-decoration: none;">
+                <a href="Proyectos/modeling-bank-using-ideal-gas.ipynb" download class="download-btn">
                     ↓ Download Raw .ipynb File
                 </a>
             </div>
@@ -35,8 +57,8 @@
         </section>
     </main>
 
-    <a href="index.html" class="boton-volver-lateral" id="backToHomeBtn">
-        <span style="font-size: 1.1em;">←</span> Back to Home
+    <a href="all-projects-menu.html" class="boton-volver-lateral" id="backToHomeBtn">
+        <span style="font-size: 1.1em;">←</span> All Projects
     </a>
 
     <script src="script.js"></script>

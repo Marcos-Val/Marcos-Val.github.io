@@ -2,109 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bird Migration Dashboard</title>
+    <title>Bird Migration Dashboard | Marcos Val</title>
+    
+    <link rel="stylesheet" href="../style.css">
+    
     <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     
     <style>
-        * { box-sizing: border-box; }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: #ffffff; 
-            color: #000000; 
-            overflow-y: auto; 
-        }
-
-        /* ---------------------------------------------------
-           Encabezado
-           --------------------------------------------------- */
-        header {
-            background-color: #07472B;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.2rem;
-        }
-
-        .page-content {
-            padding: 20px;
-        }
-
-        .contenedor-texto {
-            max-width: 1100px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .contenedor-proyectos {
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        /* ---------------------------------------------------
-           SECCIÓN: Tarjeta de Introducción
-           --------------------------------------------------- */
-        .tarjeta {
-            background-color: #ffffff; 
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-            padding: 25px 30px;
-            margin-bottom: 30px; 
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-        
-        .tarjeta h2 {
-            margin-top: 0;
-            color: #000000; 
-            font-size: 1.8rem;
-        }
-        
-        .tarjeta p {
-            margin-bottom: 15px;
-            opacity: 0.9;
-        }
-
-        .tarjeta a {
-            color: #00a8e8;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .tarjeta a:hover {
-            text-decoration: underline;
-        }
-
-        .btn-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
+        /* =================================================== */
+        /* Estilos del Botón de Descarga (Estética Portfolio)  */
+        /* =================================================== */
         .download-btn {
             display: inline-block;
-            background-color: #00a8e8;
-            color: #ffffff !important;
-            padding: 12px 24px;
-            border-radius: 5px;
+            background-color: #854F0B; /* Fondo marrón */
+            color: #F5E3BB !important; /* Letra crema */
+            border: 1px solid #854F0B;
+            padding: 12px 30px;
+            border-radius: 8px;
             text-decoration: none !important;
             font-weight: bold;
-            transition: background-color 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .download-btn:hover {
-            background-color: #008ecc;
+            background-color: #F5E3BB; 
+            color: #8d5614 !important; 
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* ---------------------------------------------------
-           DASHBOARD (La Zona Negra)
-           --------------------------------------------------- */
+        /* =================================================== */
+        /* DASHBOARD (Lógica de Grillas INTACTA)               */
+        /* =================================================== */
         .dashboard-container {
             display: flex;
             gap: 15px;
@@ -113,6 +44,8 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            /* Le damos un fondo y borde para que resalte sobre el negro del body */
+            border: 1px solid rgba(255, 255, 255, 0.1); 
         }
 
         #plot-container {
@@ -185,20 +118,19 @@
         #gif-tracker { grid-area: tracker; background-color: #050301; border: none; }
         #gif-flags { grid-area: flags; background-color: #050301; border: none; }
 
+        /* ESTO ES LO QUE NO DEBÍAMOS BORRAR (La grilla de los videos) */
         .layout-vertical {
             display: grid !important;
             grid-template-columns: 1.3fr 1fr; 
             grid-template-rows: 0.7fr 1.3fr;  
             grid-template-areas: "map tracker" "map flags";
         }
-
         .layout-square {
             display: grid !important;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 0.7fr 1.3fr; 
             grid-template-areas: "map tracker" "map flags";
         }
-
         .layout-horizontal {
             display: grid !important;
             grid-template-columns: 0.7fr 1.3fr; 
@@ -209,32 +141,33 @@
 </head>
 <body>
 
-    <header>
+    <header class="header-proyecto">
         <h1>Animal Tracker</h1>
-        <a href="../index.html" style="color: white; text-decoration: none;">← Volver al inicio</a>
+        <a href="../all-projects-menu.html" class="btn-back-header">← Back to All Projects</a>
     </header>
 
-    <div class="page-content">
-        <div class="contenedor-texto">
-            <section class="tarjeta">
-                <h2>Project </h2>
-                <p>This small project consists of visualizing how different individuals of the species <a href="https://en.wikipedia.org/wiki/Lesser_black-backed_gull" target="_blank">Larus fuscus</a> migrate across Europe over time, visiting a diverse number of countries. This was made possible thanks to <a href="https://www.movebank.org/" target="_blank">Movebank</a>, an online database hosted by the <a href="https://www.mpg.de/en" target="_blank">Max Planck Institute for Ornithology</a>. It is designed for the study of different migratory species, ensuring their safety, understanding, and protection.</p>
-                <p>The tracking databases belong to researchers from all over the world who actively collaborate, either by adding information or conducting different studies based on several of these datasets. Movement data from different individuals of the same species helps to understand how they navigate local areas, migrate across different territories, and evolve. To track each of these individuals, various techniques are used such as Radio Telemetry, Argos Doppler, Acoustic telemetry, GPS, etc. In the case of our database, we only contain data obtained via GPS.</p>
-                <p>If you want to look at these data in more detail, feel free to download them using the button below.</p>
-                
-                <div class="btn-container">
-                    <a href="migration_original.csv" download class="download-btn">Download Dataset</a>
-                </div>
-            </section>
-        </div>
+    <main class="contenedor-proyectos">
+        
+        <section class="tarjeta proyecto-articulo">
+            <h2>Project Overview</h2>
+            <p>This small project consists of visualizing how different individuals of the species <a href="https://en.wikipedia.org/wiki/Lesser_black-backed_gull" target="_blank" style="color: #854F0B; font-weight: bold;">Larus fuscus</a> migrate across Europe over time, visiting a diverse number of countries. This was made possible thanks to <a href="https://www.movebank.org/" target="_blank" style="color: #854F0B; font-weight: bold;">Movebank</a>, an online database hosted by the <a href="https://www.mpg.de/en" target="_blank" style="color: #854F0B; font-weight: bold;">Max Planck Institute for Ornithology</a>. It is designed for the study of different migratory species, ensuring their safety, understanding, and protection.</p>
+            
+            <p>The tracking databases belong to researchers from all over the world who actively collaborate, either by adding information or conducting different studies based on several of these datasets. Movement data from different individuals of the same species helps to understand how they navigate local areas, migrate across different territories, and evolve. To track each of these individuals, various techniques are used such as Radio Telemetry, Argos Doppler, Acoustic telemetry, GPS, etc. In the case of our database, we only contain data obtained via GPS.</p>
+            
+            <p>If you want to look at these data in more detail, feel free to download them using the button below.</p>
+            
+            <div style="text-align: center; margin-top: 35px;">
+                <a href="migration_original.csv" download class="download-btn">↓ Download Dataset</a>
+            </div>
+        </section>
 
-        <div class="contenedor-proyectos">
-            <div class="dashboard-container">
+        </main> <div style="max-width: 1500px; width: 95%; margin: 40px auto 60px auto;">
+                <div class="dashboard-container">
                 <div id="plot-container"></div>
                 
                 <div id="right-panel">
                     <div id="info-container">
-                        <span id="info-text" style="color: #888;">Select a point to view details</span>
+                        <span id="info-text" style="color: #ffffff;">Select a point to view details</span>
                     </div>
 
                     <div id="gif-container">
@@ -249,10 +182,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <script>
+        </div> <script>
         let lookupTable = {}; 
         let timeoutReinicio; 
         let timeoutCargaSeguridad; 

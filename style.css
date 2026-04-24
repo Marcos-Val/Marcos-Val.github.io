@@ -12,13 +12,13 @@ body {
 header {
     background-color: #064027;
     text-align: center;
-    /* Cambiamos el padding: 30px arriba, 20px lados, 10px abajo */
-    padding: 70px 20px 70px 20px; 
+    /* Reducimos el valor de abajo a 20px para acercar el título a las cajas */
+    padding: 60px 20px 20px 20px; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px; /* Reduje un poco el gap entre líneas también */
+    gap: 8px; 
 }
 
 header h1 {
@@ -28,6 +28,10 @@ header h1 {
     margin: 0;
     font-weight: 700;
     letter-spacing: 1px;
+}
+
+header.header-proyecto {
+    padding-bottom: 70px; 
 }
 
 .header-sup {
@@ -65,26 +69,33 @@ header h1 {
     font-style: normal;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
 .contenedor-proyectos {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
     padding: 40px 20px;
-    max-width: 1100px;
+    max-width: 1150px; /* Antes era 1100px. Lo ensanchamos 100px más */
     margin: 0 auto;
     position: relative;
     z-index: 1;
 }
 
 .tarjeta {
-    background-color: #F5E3BB; /* Fondo claro principal */
+    background-color: #F5E3BB; 
     width: 100%;
     border-radius: 8px;
-    border: 3px solid #854F0B; /* Borde exterior marrón */
+    border: 3px solid #854F0B; 
     position: relative;
-    overflow: hidden; /* Asegura que la franja derecha no se salga de las esquinas redondeadas */
-    box-shadow: none; /* Quitamos la sombra para mantener el estilo "flat" de la imagen */
+    overflow: hidden; 
+    box-shadow: none; 
+    
+    /* LA MAGIA SUCEDE ACÁ: 
+       50px de margen arriba/abajo y 90px de margen a los lados */
+    padding: 30px 70px; 
+    box-sizing: border-box; /* Fundamental para que el margen no desborde el ancho de la página */
 }
 
 
@@ -214,8 +225,8 @@ header h1 {
     width: 100%;
     display: flex;
     justify-content: center;
-    /* Reducimos el primer valor (arriba) de 50px a 20px */
-    padding: 70px 20px 50px 20px; 
+    /* 10px arriba para acercarlo al título, y 160px abajo para alargar la franja verde */
+    padding: 40px 20px 110px 20px; 
     box-sizing: border-box;
 }
 
@@ -270,11 +281,12 @@ header h1 {
 }
 
 .box-about p {
-    font-family: 'Playfair Display Regular', serif; /* Nueva fuente */
+    font-family: 'Cormorant Garamond', serif; /* Cambiamos a Garamond */
     margin: 0;
     color: #afead7;
     line-height: 1.6;
-    font-size: 1.1em; /* Subimos un poquito el tamaño para mejorar la lectura del serif */
+    font-size: 1.25rem; /* Aumentamos un poquito el tamaño porque la Garamond es más fina */
+    font-weight: 400;
 }
 
 
@@ -495,9 +507,11 @@ header h1 {
 }
 
 .edu-desc {
-    color: #8CCDB8; /* El nuevo color verde solicitado */
-    font-size: 1em;
+    font-family: 'Cormorant Garamond', serif; /* Aplicamos la tipografía elegante */
+    color: #8CCDB8; /* Mantenemos el color verde agua */
+    font-size: 1.25em; /* Lo subimos un poco porque la Garamond es más fina y pequeña que la fuente anterior */
     line-height: 1.4;
+    font-weight: 400;
 }
 
 .edu-divider {
@@ -750,7 +764,7 @@ header h1 {
     position: absolute; /* Permite moverlo por toda la pantalla */
     
     /* POSICIONAMIENTO: Ajustá estos valores para moverlo */
-    top: 1231px;  /* Ajustalo para que coincida exactamente donde empieza el negro */
+    top: 1307px;  /* Ajustalo para que coincida exactamente donde empieza el negro */
     left: -455px;     /* 0 para que empiece desde la izquierda */
     
     /* REESCALADO: Controlá el tamaño aquí */
@@ -829,4 +843,96 @@ header h1 {
 .btn-all-projects:hover {
     background-color: #F5E3BB; /* Se invierte al crema */
     color: #8d5614; /* Letra marrón */
+}
+
+.proyecto-articulo {
+    /* Aquí agrandamos el bloque internamente separando el texto del borde */
+    padding: 50px 90px; 
+    box-sizing: border-box;
+}
+
+/* Títulos internos (Project Overview, etc.) en Playfair Display */
+.proyecto-articulo h2{
+    font-family: 'Playfair Display', serif !important;
+    font-weight: bold;
+    margin-top: 0.1em;
+    font-size: 2.5rem;
+} 
+.proyecto-articulo h3 {
+    font-family: 'Playfair Display', serif !important;
+    color: #000000; 
+    font-weight: bold;
+    line-height: 2.1;
+    margin-top: 1.2em;
+    margin-bottom: -0.1em;
+    font-size: 1.6rem;
+}
+
+/* Cuerpo de texto en la elegante Cormorant Garamond */
+.proyecto-articulo p, 
+.proyecto-articulo li {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.35rem; /* Tamaño optimizado para buena legibilidad */
+    line-height: 1.45;
+    color: #2c3e50; 
+    font-style: normal; 
+}
+
+/* Opcional: Resaltar las palabras en negrita con el color marrón */
+.proyecto-articulo strong {
+    font-weight: 600;
+    color: #000000;
+}
+
+/* ========================================================== */
+/* SECCIÓN: Botón "Back to Home" Superior (Solo Texto)        */
+/* ========================================================== */
+
+.btn-back-header {
+    display: inline-block;
+    margin-top: 15px;
+    
+    /* ESTÉTICA DE TEXTO LIMPIO */
+    color: #ffffff !important; /* Verde agua para que combine con el subtítulo */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-decoration: none !important;
+    
+    transition: all 0.3s ease;
+}
+
+/* Efecto Hover: Cambio de color y leve movimiento */
+.btn-back-header:hover {
+    color: #7EC9A2 !important; /* Cambia al dorado de tu nombre */
+    transform: translateX(-5px); /* Se desliza sutilmente hacia la izquierda */
+}
+
+/* ========================================================== */
+/* SECCIÓN: Burbujas de Notas / Disclaimers (Versión Elegante)*/
+/* ========================================================== */
+
+.nota-al-margen {
+    margin: 25px 0; 
+    padding: 15px 20px;
+    background-color: #f3f1f1; /* Un tono gris-azulado muy tenue que despega del crema */
+    border-radius: 6px; 
+    border-left: 7px solid #a13636; /* Azul acero para el borde de acento */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03); 
+}
+
+.nota-al-margen p {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 0.95rem !important; /* Un poco más compacto que el cuerpo principal */
+    color: #2c3e50 !important; /* Mantenemos el color de texto original */
+    font-style: normal !important; /* Texto recto, sin itálica */
+    line-height: 1.1 !important;
+    margin: 0 !important;
+}
+
+.nota-al-margen strong {
+    color: #000000 !important; /* El aviso resalta con el mismo azul del borde */
+    font-weight: bold;
 }

@@ -6,17 +6,16 @@
     <title>RAFA Scientific Poster | Marcos Val</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Container adjustment to prevent overflow */
+/* Container adjustment to prevent overflow */
         .poster-container {
             width: 100%;
             max-width: 100%; 
-            margin-top: 30px;
+            margin-top: 10px;
             text-align: center;
-            background-color: #f1f3f5;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #dee2e6;
-            /* Critical: Includes padding in the width calculation */
+            /* Se cambia el gris por un tono arena/crema oscuro muy elegante */
+            background-color: #F5E3BB; 
+            padding: 0px;
+            border-radius: 32px;
             box-sizing: border-box; 
             overflow: hidden; 
         }
@@ -25,50 +24,54 @@
             display: block;
             width: 100%; 
             height: auto;
-            /* Limits the image size so it doesn't look blurry if the card is too wide */
             max-width: 800px; 
             margin: 0 auto;
-            border-radius: 4px;
+            border-radius: 7px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
 
         .poster-image:hover {
-            /* Reduced scale to prevent edge clipping during zoom */
             transform: scale(1.01);
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
+        /* Botón de descarga con la estética del "Back to Home" lateral */
         .download-btn {
             display: inline-block;
             margin-top: 25px;
-            background-color: #2c3e50;
-            color: white;
+            background-color: #854F0B; /* Fondo marrón */
+            color: #F5E3BB; /* Letra crema */
+            border: 1px solid #854F0B;
             padding: 12px 25px;
-            border-radius: 6px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.2s;
+            font-weight: bold; /* Mantiene la tipografía original */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .download-btn:hover {
-            background-color: #34495e;
+            background-color: #F5E3BB; /* Se invierte al crema */
+            color: #8d5614; /* Letra marrón */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
-    <header>
+    <header class="header-proyecto">
         <h1>RAFA Scientific Poster</h1>
-        <a href="index.html" style="color: white; text-decoration: none;">← Back to Home</a>
+        <a href="index.html" class="btn-back-header">← Back to Home</a>
     </header>
 
     <main class="contenedor-proyectos">
-        <section class="tarjeta">
+        <section class="tarjeta proyecto-articulo">
             <h2>Project Overview</h2>
             <p>This project showcases a scientific poster presented at the <strong>RAFA</strong> (Reunión Anual de la Asociación Física Argentina) conference. The research focuses on complex physical phenomena, requiring precise data visualization and academic formatting. This was the result of over six months of work, involving the development of several Python scripts. These were used not only to operate complex and delicate instruments but also for the subsequent data processing, where cleaning and analysis were automated to achieve an accurate characterization of the equipment.</p>
             <p>The entire document was typeset using <strong>LaTeX</strong>, ensuring high-quality mathematical notation and professional layout standards.</p>
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+            <hr style="border: 0; border-top: 1px solid transparent; margin: 5px 0;">
 
             <div style="text-align: center;">
                 <h3>Poster Preview</h3>

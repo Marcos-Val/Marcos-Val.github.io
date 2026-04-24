@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <header class="header-proyecto">
         <h1>Letterboxd Movie Filter</h1>
-        <a href="index.html" style="color: white; text-decoration: none;">← Back to Home</a>
+        <a href="index.html" class="btn-back-header">← Back to Home</a>
     </header>
 
     <main class="contenedor-proyectos">
-        <section class="tarjeta">
+        <section class="tarjeta proyecto-articulo">
             <h2>Project Overview</h2>
             <p>This project shows a dynamic movie filtering tool designed to help users navigate complex cinematic datasets. The underlying data was gathered using custom <strong>Python</strong> scripts to scrape and clean movie information directly from the Letterboxd platform. The structured data was then managed using <strong>SQL</strong> queries before being imported into <strong>Power BI</strong>. The final dashboard acts as an interactive search engine, using advanced DAX measures to allow users to filter films by genre, ratings, release decades, and specific user engagement metrics.</p>
             
-            <div style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border-radius: 8px; border-left: 5px solid #ffc107;">
-                <p style="font-size: 0.9em; color: #664d03; margin: 0;">
+            <div class="nota-al-margen">
+                <p>
                     <strong>Please note:</strong> Due to Microsoft Power BI's security limitations, the interactive dashboard cannot be fully embedded here without a prior Microsoft account login. The live interactive dashboard is available at the very bottom of this page for authorized users, but you can explore high-resolution screenshots of the tool below.
                 </p>
             </div>
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 50px 0;">
+            <hr style="border: 0; border-top: 1px transparent; margin: 10px 0;">
 
             <h2>Interactive Filter Dashboard</h2>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">Requires Microsoft login authorization to view live data.</p>

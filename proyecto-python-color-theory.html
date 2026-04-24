@@ -6,35 +6,36 @@
     <title>Color Theory for Graphs | Marcos Val</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ========================================== */
-        /* 1. ESTOS SON LOS ESTILOS PARA EL BOTÓN     */
-        /* ========================================== */
         .download-btn {
             display: inline-block;
             margin-top: 30px;
-            background-color: #2c3e50;
-            color: white;
+            background-color: #854F0B; /* Fondo marrón */
+            color: #F5E3BB; /* Letra crema */
+            border: 1px solid #854F0B;
             padding: 12px 30px;
-            border-radius: 6px;
+            border-radius: 8px; /* Bordes un poco más redondeados para acompañar el diseño */
             text-decoration: none;
             font-weight: bold;
-            transition: background-color 0.2s, transform 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra elegante */
         }
 
         .download-btn:hover {
-            background-color: #34495e;
-            transform: scale(1.02);
+            background-color: #F5E3BB; /* Se invierte al crema */
+            color: #8d5614; /* Letra marrón */
+            transform: translateY(-3px); /* Pequeño salto hacia arriba */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* La sombra crece al acercar el mouse */
         }
     </style>
 </head>
 <body>
-    <header>
+    <header class="header-proyecto">
         <h1>Color Theory for Graphs</h1>
-        <a href="index.html" style="color: white; text-decoration: none;">← Volver al inicio</a>
+        <a href="index.html" class="btn-back-header">← Back to Home</a>
     </header>
 
    <main class="contenedor-proyectos">
-    <section class="tarjeta">
+    <section class="tarjeta proyecto-articulo">
         <h2>Project Overview</h2>
         
         <p>Selecting an appropriate color palette is often one of the most repetitive and time-consuming aspects of data visualization. While impactful visuals are essential for effectively communicating results, manually finding cohesive color schemes can stall the analytical process.</p>

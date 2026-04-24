@@ -11,9 +11,58 @@ body {
 
 header {
     background-color: #064027;
-    color: white;
     text-align: center;
-    padding: 40px 20px;
+    /* Cambiamos el padding: 30px arriba, 20px lados, 10px abajo */
+    padding: 70px 20px 70px 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Reduje un poco el gap entre líneas también */
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    color: #FAC775; /* Dorado */
+    font-size: 4em; /* Tamaño grande para destacar el nombre */
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.header-sup {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #7EC9A2; /* Verde agua claro */
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 4px; /* Esta es la clave para el efecto extendido */
+    font-weight: 600;
+}
+
+.header-sub {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #5BAF80; /* Verde medio */
+    font-size: 1.15em;
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+
+/* Declaración de la fuente local */
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('font/Playfair_Display/static/PlayfairDisplay-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Declaración de la versión Regular para textos descriptivos */
+@font-face {
+    font-family: 'Playfair Display Regular';
+    src: url('font/Playfair_Display/static/PlayfairDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }
 
 .contenedor-proyectos {
@@ -29,30 +78,42 @@ header {
 }
 
 .tarjeta {
-    background-color: white;
+    background-color: #F5E3BB; /* Fondo claro principal */
     width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    padding: 40px;
-    box-sizing: border-box;
+    border-radius: 8px;
+    border: 3px solid #854F0B; /* Borde exterior marrón */
+    position: relative;
+    overflow: hidden; /* Asegura que la franja derecha no se salga de las esquinas redondeadas */
+    box-shadow: none; /* Quitamos la sombra para mantener el estilo "flat" de la imagen */
 }
+
 
 .project-card-layout {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 30px;
-    padding: 30px;
+    /* IMPORTANTE: Le damos 120px de padding a la derecha para que el texto no pise la franja */
+    padding: 30px 120px 30px 30px; 
     box-sizing: border-box;
+    position: relative;
+    z-index: 2; /* Mantiene el contenido por encima del fondo */
 }
 
+/* 1. Obligamos a la imagen a estar SIEMPRE a la izquierda */
 .project-image-container {
     flex: 0 0 250px;
     height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
-    order: 1;
+    order: 1 !important; /* CLAVE: La fuerza a ser el primer elemento */
+}
+
+/* Redondear los bordes de las imágenes de los proyectos */
+.project-image-container img {
+    border-radius: 16px !important; /* Podés subir este número (ej. 24px) para que sean más redondas */
+    overflow: hidden;
 }
 
 .espacio-interactivo {
@@ -66,27 +127,36 @@ header {
     justify-content: center;
 }
 
+/* 2. Obligamos al texto a estar en el centro, después de la imagen */
 .project-content-text {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    order: 2;
+    align-self: flex-start;
+    margin-top: 30px;
+    order: 2 !important; /* CLAVE: Lo fuerza a ser el segundo elemento */
 }
 
 .project-content-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: semi-bold;
+    color: #2c3e50; /* Un tono oscuro elegante para contrastar con el fondo claro */
+    font-size: 2.1rem;
     margin-top: 0;
-    color: #2c3e50;
-    font-size: 1.5rem;
+    margin-bottom: 15px;
 }
 
-/* Lógica de Intercalado para Proyectos del Menú Principal */
-.project-card-layout:nth-child(even) .project-image-container { order: 2; }
-.project-card-layout:nth-child(even) .project-content-text {
-    order: 1;
-    text-align: right;
-    align-items: flex-end;
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400&display=swap');
+
+.project-content-text p {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    color: #4a5568; 
+    font-size: 1.25rem;
+    line-height: 1.7;
+    margin: 0;
 }
 
 .placeholder {
@@ -102,19 +172,50 @@ header {
     display: block;
 }
 
-.link-titulo-proyecto:hover h3 { color: #3498db; }
+/* Expande el link por todo el bloque, respetando la zona derecha */
+.link-titulo-proyecto::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 90px; /* Deja libre la nueva zona derecha para que no se pisen */
+    z-index: 5;
+}
+
+.link-titulo-proyecto:hover h3,
+.link-proyecto:hover .espacio-interactivo {
+    color: #854F0B; 
+    border-color: #854F0B;
+}
 
 
 /* ========================================================== */
 /* SECCIÓN: Currículum (Floating Windows / Bento Grid)        */
 /* ========================================================== */
+/* Alineación para títulos que tienen íconos SVG (como About me) */
+.title-with-icon {
+    display: inline-flex !important; 
+    flex-direction: row !important; 
+    align-items: center; /* Centra matemáticamente */
+    gap: 8px; /* Separación un poco más ajustada */
+    line-height: 1;
+    font-size: 1.35em !important; /* Esto es CLAVE: le quita el espacio invisible extra que tiene el texto arriba y abajo */
+}
+
+.title-with-icon svg {
+    flex-shrink: 0; 
+    margin-bottom: 0; /* Le sacamos el margen que lo estaba empujando hacia arriba */
+    transform: translateY(-1px); /* Ajuste fino: a veces las mayúsculas se ven raras, esto lo baja un milímetro para que quede perfecto al ojo */
+}
 
 .contenedor-cv-blue {
     background-color: #064027; 
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 50px 20px;
+    /* Reducimos el primer valor (arriba) de 50px a 20px */
+    padding: 70px 20px 50px 20px; 
     box-sizing: border-box;
 }
 
@@ -128,8 +229,11 @@ header {
 }
 
 /* Base para todas las ventanas flotantes */
+/* Base para todas las ventanas flotantes */
 .resume-box {
-    background-color: #ecf0f1; 
+    background-color: #0F2318; /* Nuevo color de fondo */
+    border: 1px solid #FAC775; /* Nuevo borde */
+    color: #FAC775; /* Nuevo color de texto por defecto */
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
@@ -142,15 +246,17 @@ header {
 .box-photo-main {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    background-color: #bdc3c7; 
-    border: 2px dashed #95a5a6;
+    background-color: #0F2318;
+    border: 2px solid #EF9F27; 
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #6c757d;
+    color: #FAC775;
     font-weight: bold;
     min-height: 280px;
     padding: 0;
+    /* Esta es la propiedad clave que "corta" las esquinas de la foto: */
+    overflow: hidden; 
 }
 
 /* 2. Texto Descriptivo */
@@ -164,10 +270,27 @@ header {
 }
 
 .box-about p {
+    font-family: 'Playfair Display Regular', serif; /* Nueva fuente */
     margin: 0;
-    color: #333;
+    color: #afead7;
     line-height: 1.6;
-    font-size: 1.05em;
+    font-size: 1.1em; /* Subimos un poquito el tamaño para mejorar la lectura del serif */
+}
+
+
+.box-about .section-title {
+    color: #FAC775; /* Aquí podés poner el color que prefieras, por ejemplo el dorado */
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif; /* Nueva fuente */
+    color: #FAC775;
+    font-size: 1.25em; /* La subí un poquito porque Playfair suele verse más chica */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-bottom: 5px;
 }
 
 /* 3. Burbujas Rectangulares */
@@ -177,45 +300,55 @@ header {
 
 .pill-content {
     display: flex;
-    align-items: center;
-    gap: 15px; /* Reducido levemente para que todo entre en el nuevo ancho */
+    flex-direction: column; /* Apila el título y los iconos verticalmente */
+    align-items: flex-end; /* Empuja el contenido hacia la derecha */
+    justify-content: center;
+    width: 100%;
     height: 100%;
+    gap: 12px; /* Separación entre el título y los iconos */
 }
 
 .pill-text {
     font-weight: bold;
-    color: #2c3e50;
+    color: #FAC775; /* Actualizado */
     min-width: 85px;
     font-size: 0.95em;
     white-space: nowrap; 
 }
 
 .pill-divider {
-    width: 2px;
+    width: 1px;
     height: 35px;
-    background-color: #bdc3c7;
+    background-color: #FAC775; /* Actualizado para que la línea combine */
 }
 
 .pill-icons {
     display: flex;
-    gap: 10px; /* Reducido levemente para que entren los 4 iconos ajustados */
-    flex: 1;
-    align-items: center;
+    justify-content: flex-start; /* Asegura que los íconos se peguen a la derecha */
+    gap: 25px;
+    width: 100%;
 }
 
 /* MODIFICACIÓN 1: Estilos para el texto de Idiomas */
 .pill-languages {
     display: flex;
-    gap: 15px;
-    flex: 1;
+    margin-left: 25px;
+    justify-content: flex-start; /* Asegura que los textos se peguen a la derecha */
+    gap: 15px 20px;
+    width: 100%;
     align-items: center;
     font-weight: bold;
-    color: #07472B;
+    color: #8CCDB8;
     font-size: 0.95em;
 }
 
+.pill-languages span {
+    font-size: 1.2rem; /* Aumentá o disminuí este número hasta que te guste cómo queda */
+    font-weight: 500;  /* Opcional: le da un poquito más de grosor para que resalte */
+}
+
 .lang-dot {
-    color: #bdc3c7;
+    color: #8CCDB8; /* Actualizado */
     font-size: 1.2em;
 }
 
@@ -224,7 +357,7 @@ header {
     width: 42px; /* Ajuste mínimo */
     height: 42px;
     background-color: #fff;
-    border: 2px dashed #bdc3c7;
+    border: 1px dashed #bdc3c7;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -234,22 +367,62 @@ header {
 }
 
 /* Para cajas con logos reales */
+/* Para las cajas que contienen los logos de Python, SQL, Power BI, etc. */
 .icon-skill {
-    width: 42px; /* Ajuste mínimo para empatar con los placeholders */
-    height: 42px;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
+    width: 52px;
+    height: 52px;
+    background-color: #ffffff;
+    border: 2px solid #afead7;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    position: relative; 
+    cursor: default; /* Cambiamos 'pointer' por 'default' (la flecha normal) */
+}
+
+.icon-skill::after {
+    content: attr(data-name); /* Extrae mágicamente el texto del HTML que pusimos antes */
+    position: absolute;
+    bottom: -30px; /* Lo coloca por debajo de la caja */
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px); /* Lo centra y lo sube un poquito */
+    
+    /* Estética del cartelito */
+    background-color: #064027; /* Mismo fondo de la página */
+    color: #7EC9A2; /* Letra verde agua */
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 0.75em;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #7EC9A2;
+    white-space: nowrap; /* Evita que el texto salte a otra línea */
+    
+    /* Animación: Por defecto está invisible */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    z-index: 10;
 }
 
 .icon-skill img {
     width: 70%;
     height: 70%;
     object-fit: contain;
+}
+
+.icon-skill:hover {
+    border-color: #27b96d;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.icon-skill:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); 
 }
 
 /* 4. Experiencia y Educación (Columna Derecha Dividida) - MODIFICACIÓN 2 */
@@ -269,11 +442,25 @@ header {
 }
 
 .box-education {
-    gap: 20px; /* Separación interna entre secundaria y universidad */
+    gap: 15px; 
+    justify-content: flex-start; /* Para que el contenido empiece desde arriba */
 }
 
 .box-experience {
     gap: 10px;
+}
+
+/* Forzamos la estética pequeña y verde para los títulos de ambas cajas derechas */
+.box-education .section-title,
+.box-experience .section-title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important; 
+    color: #5BAF80 !important; 
+    font-size: 0.8em !important; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 0px;
+    display: block;
 }
 
 .edu-item {
@@ -290,14 +477,17 @@ header {
 }
 
 .edu-title {
+    font-family: 'Playfair Display', serif !important;
     font-weight: bold;
-    font-size: 1.3em;
-    color: #2c3e50;
+    font-size: 1.4em;
+    color: #FAC775;
+    margin-top: 0px;
+    display: block;
 }
 
 .edu-date {
-    background-color: #1a252f;
-    color: white;
+    background-color: #854F0B; /* Actualizado el fondo de la fecha */
+    color: #FAC775; /* Texto oscuro para que resalte sobre el fondo naranja */
     padding: 5px 12px;
     border-radius: 15px;
     font-size: 0.85em;
@@ -305,17 +495,25 @@ header {
 }
 
 .edu-desc {
-    color: #555;
+    color: #8CCDB8; /* El nuevo color verde solicitado */
     font-size: 1em;
     line-height: 1.4;
 }
 
 .edu-divider {
     border: 0;
-    border-top: 2px solid #ddd;
+    font-family: 'Playfair Display Regular', serif;
+    border-top: 1px solid #FAC775; /* Actualizado para que la línea combine */
     margin: 5px 0;
 }
 
+.edu-category {
+    color: #8CCDB8; /* El nuevo color verde solicitado */
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
 
 /* ========================================================== */
 /* SECCIÓN: Project Details Gallery (Páginas Internas / PBI)  */
@@ -377,26 +575,34 @@ header {
 
 
 /* ========================================================== */
-/* SECCIÓN: Sidebar Back Button (Botón Fijo)                  */
+/* SECCIÓN: Sidebar Back Button (Botón Fijo Rediseñado)       */
 /* ========================================================== */
 
 .boton-volver-lateral {
     position: fixed;
     bottom: 30px;
     left: 30px;
-    background-color: white;
-    color: #2c3e50;
+    /* Colores base para coincidir con el botón principal */
+    background-color: #854F0B; 
+    color: #F5E3BB;
+    border: 1px solid #854F0B;
+    
     padding: 12px 24px;
     border-radius: 8px;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 0.95em;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    border: 1px solid #e9ecef;
+    
+    /* Tipografía elegante */
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     display: flex;
     align-items: center;
     gap: 10px;
+    
+    /* Estado inicial invisible para la animación de JS */
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
@@ -409,11 +615,12 @@ header {
     transform: translateY(0);
 }
 
+/* Efecto Hover idéntico al botón central */
 .boton-volver-lateral.mostrar:hover {
-    background-color: #07472B;
-    color: white;
+    background-color: #F5E3BB;
+    color: #8d5614;
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* ========================================================== */
@@ -450,19 +657,21 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    padding: 40px 20px;
+    padding: 10px 20px;
     max-width: 800px; /* Un poco más angosto que el index principal */
     margin: 0 auto;
 }
 
 .contenedor-todos-proyectos h2 {
-    color: #2c3e50;
-    font-size: 2.2rem;
+    font-family: 'Playfair Display', serif; /* Aplicamos la tipografía elegante */
+    color: #FAC775; /* Cambiamos el color al dorado/crema */
+    font-size: 2.8rem; /* Aumentamos un poco el tamaño para que gane presencia */
     margin-bottom: 30px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
+    border-bottom: 2px solid #FAC775; /* La línea separadora ahora es del mismo color */
+    padding-bottom: 15px; /* Un poquito más de aire entre la letra y la línea */
     width: 100%;
     text-align: center;
+    font-weight: 500;
 }
 
 /* Tarjeta miniatura estilo lista */
@@ -471,22 +680,23 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
+    background-color: #F5E3BB; /* Fondo crema solicitado */
     width: 100%;
     padding: 20px 30px;
     border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     text-decoration: none;
     color: inherit;
     box-sizing: border-box;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    border: 2px solid transparent; /* Para el hover */
+    border: 3px solid #854F0B; /* Borde marrón solicitado */
 }
 
 .tarjeta-mini:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-    border-color: #3498db;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    /* El borde se mantiene en el mismo marrón para consistencia */
+    border-color: #854F0B; 
 }
 
 .tarjeta-mini-texto {
@@ -497,12 +707,14 @@ header {
 .tarjeta-mini-texto h3 {
     margin: 0;
     color: #2c3e50;
-    font-size: 1.3rem;
+    font-family: 'Playfair Display', serif; /* Tipografía Playfair Display */
+    font-weight: bold;
+    font-size: 1.6rem; /* Aumentamos un poco para elegancia */
     transition: color 0.2s ease;
 }
 
 .tarjeta-mini:hover .tarjeta-mini-texto h3 {
-    color: #3498db;
+    color: #854F0B; 
 }
 
 .tarjeta-mini-img {
@@ -510,8 +722,8 @@ header {
     height: 100px; /* Alto fijo */
     border-radius: 8px;
     overflow: hidden;
-    background-color: #ffffff; /* Ahora el fondo es blanco */
-    border: 1px solid #ffffff;
+    background-color: #ffffff00; /* Ahora el fondo es blanco */
+    border: 1px solid #ffffff00;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -538,7 +750,7 @@ header {
     position: absolute; /* Permite moverlo por toda la pantalla */
     
     /* POSICIONAMIENTO: Ajustá estos valores para moverlo */
-    top: 1062px;  /* Ajustalo para que coincida exactamente donde empieza el negro */
+    top: 1231px;  /* Ajustalo para que coincida exactamente donde empieza el negro */
     left: -455px;     /* 0 para que empiece desde la izquierda */
     
     /* REESCALADO: Controlá el tamaño aquí */
@@ -564,4 +776,57 @@ header {
     width: 2500px;      
     height: 1100px;
     opacity: 0.9;    
+}
+
+/* Contenedor de la franja derecha */
+.zona-derecha {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 90px;
+    background-color: #F8D39C;
+    border-left: 2px solid #854F0B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    text-decoration: none;
+}
+
+/* Burbuja marrón que contiene la flecha */
+.burbuja-flecha {
+    width: 44px;
+    height: 44px;
+    background-color: #854F0B;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Transición con un efecto de rebote sutil */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+/* LA ANIMACIÓN: Cuando el mouse entra a la zona derecha, la burbuja sube */
+.zona-derecha:hover .burbuja-flecha {
+    transform: translateY(-8px);
+}
+
+.btn-all-projects {
+    background-color: #854F0B; /* Fondo marrón oscuro */
+    color: #F5E3BB; /* Letra crema */
+    border: 1px solid #854F0B;
+    padding: 14px 34px;
+    border-radius: 8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-all-projects:hover {
+    background-color: #F5E3BB; /* Se invierte al crema */
+    color: #8d5614; /* Letra marrón */
 }

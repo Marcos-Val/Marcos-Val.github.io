@@ -8,19 +8,25 @@
 </head>
 <body>
     <header>
+        <span class="header-sup">PORTFOLIO · PHYSICS & DATA</span>
         <h1>Marcos Val</h1>
-        <h2>Data Analysis & Physics Portfolio</h2>
-        <p>Interactive projects in Python, SQL, Power BI, and scientific documentation.</p>
+        <p class="header-sub">Python · SQL · Power BI · Scientific Documentation</p>
     </header>
 
     <div class="contenedor-cv-blue">
         <section class="resume-grid">
             
-            <div class="resume-box box-photo-main" style="padding: 0; overflow: hidden; border-radius: 20px; background-color: transparent; border: none; outline: none;">
-                <img src="Images/foto_de_perfil.png" alt="Marcos Val" style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 20px; border: none; outline: none;">
+            <div class="resume-box box-photo-main">
+                <img src="Images/foto_de_perfil.png" alt="Marcos Val" style="width: 100%; height: 100%; object-fit: cover; display: block;">
             </div>
 
             <div class="resume-box box-about">
+                <span class="section-title title-with-icon">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                    About me
+                </span>
                 <p>Physics Student @UBA / 2024 graduation expected. Passionate about data analysis, statistical modeling, and physics-driven simulations.</p>
                 <p>Specializing in scientific data processing, relational database management, and interactive dashboards. Committed to applying rigorous scientific methodology to complex data challenges.</p>
                 <p>Experienced in analyzing large experimental datasets and developing simulations to extract meaningful physical insights. Focus on reproducibility, precision, and data-driven results.</p>
@@ -28,33 +34,55 @@
 
             <div class="resume-box box-pill-1" style="padding: 20px 25px;">
                 <div class="pill-content">
-                    <span class="pill-text">Data Tools</span>
-                    <div class="pill-divider"></div>
+                    <span class="section-title title-with-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22">
+                            <path d="M3 4h18l-7 9v7l-4-2v-5L3 4z" fill="#FAC775" />
+                        </svg>
+                        <span>Data Tools</span>
+                    </span>
                     <div class="pill-icons">
-                        <div class="icon-skill"><img src="Images/Skills/python-logo.png" alt="Python"></div>
-                        <div class="icon-skill"><img src="Images/Skills/sql-logo.png" alt="SQL"></div>
-                        <div class="icon-skill"><img src="Images/Skills/excel-logo.png" alt="Excel"></div>
-                        <div class="icon-skill"><img src="Images/Skills/github-logo.png" alt="GitHub"></div>
+                        <div class="icon-skill" data-name="Python"><img src="Images/Skills/python-logo.png" alt="Python"></div>
+                        <div class="icon-skill" data-name="SQL"><img src="Images/Skills/sql-logo.png" alt="SQL"></div>
+                        <div class="icon-skill" data-name="Excel"><img src="Images/Skills/excel-logo.png" alt="Excel"></div>
+                        <div class="icon-skill" data-name="GitHub"><img src="Images/Skills/github-logo.png" alt="GitHub"></div>
                     </div>
                 </div>
             </div>
 
             <div class="resume-box box-pill-2" style="padding: 20px 25px;">
                 <div class="pill-content">
-                    <span class="pill-text">Design</span>
-                    <div class="pill-divider"></div>
+                    <span class="section-title title-with-icon">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="5" width="18" height="12" rx="1" />
+                            <path d="M1 5h22" />
+                            <path d="M12 2v3" />
+                            <path d="M12 17v5" />
+                            <path d="M12 17l-3.5 5" />
+                            <path d="M12 17l3.5 5" />
+                            <rect x="6" y="12" width="2.5" height="3" />
+                            <rect x="10.75" y="9" width="2.5" height="6" />
+                            <rect x="15.5" y="6" width="2.5" height="9" />
+                        </svg>
+                        <span>Design</span>
+                    </span>
+                    
                     <div class="pill-icons">
-                        <div class="icon-skill"><img src="Images/Skills/powerbi-logo.png" alt="Power BI"></div>
-                        <div class="icon-skill"><img src="Images/Skills/latex-logo.png" alt="LaTeX"></div>
-                        <div class="icon-skill"><img src="Images/Skills/tableau-logo.png" alt="Tableau"></div>
+                        <div class="icon-skill" data-name="Power BI"><img src="Images/Skills/powerbi-logo.png" alt="Power BI"></div>
+                        <div class="icon-skill" data-name="LaTeX"><img src="Images/Skills/latex-logo.png" alt="LaTeX"></div>
+                        <div class="icon-skill" data-name="Tableau"><img src="Images/Skills/tableau-logo.png" alt="Tableau"></div>
                     </div>
                 </div>
             </div>
 
             <div class="resume-box box-pill-3" style="padding: 20px 25px;">
                 <div class="pill-content">
-                    <span class="pill-text">Languages</span>
-                    <div class="pill-divider"></div>
+                    <span class="section-title title-with-icon">
+                        <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/>
+                        </svg>
+                        <span>Languages</span>
+                    </span>
+                    
                     <div class="pill-languages">
                         <span>Spanish</span>
                         <span class="lang-dot">•</span>
@@ -64,18 +92,33 @@
             </div>
 
             <div class="box-right-wrapper">
-                
+                                
                 <div class="resume-box box-experience">
+                    <span class="section-title title-with-icon">
+                        <svg viewBox="0 0 512 512" width="18" height="18" fill="currentColor">
+                            <path d="M320 336c0 8.8-7.2 16-16 16h-96c-8.8 0-16-7.2-16-16v-48H0v144c0 25.6 22.4 48 48 48h416c25.6 0 48-22.4 48-48V288H320v48zm144-208h-80V80c0-25.6-22.4-48-48-48H176c-25.6 0-48 22.4-48 48v48H48c-25.6 0-48 22.4-48 48v80h512v-80c0-25.6-22.4-48-48-48zm-144 0H192V96h128v32z"/>
+                        </svg>
+                        <span>Past Experience</span>
+                    </span>
+                    
                     <div class="edu-item">
                         <div class="edu-header">
-                            <span class="edu-title">Past Experience</span>
+                            <span class="edu-title">R&D Internship</span>
                             <span class="edu-date">2024</span>
                         </div>
-                        <span class="edu-desc"><strong>R&D Internship</strong> - Comisión Nacional de Energía Atómica (CNEA) - ITeDA</span>
+                        <span class="edu-desc">Comisión Nacional de Energía Atómica (CNEA) · ITeDA</span>
                     </div>
                 </div>
 
                 <div class="resume-box box-education">
+                    <span class="section-title title-with-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                            <path d="M12 3L1 9l11 6 11-6z"/>
+                            <path d="M5 13.18v4L12 21l7-3.82v-4L12 17z"/>
+                        </svg>
+                        <span>Education</span>
+                    </span>
+                    
                     <div class="edu-item">
                         <div class="edu-header">
                             <span class="edu-title">Undergraduate</span>
@@ -115,6 +158,13 @@
                 </a>
                 <p>Statistical analysis, DAX measures, and data modeling exploring movie rating behaviors within the Letterboxd app ecosystem.</p>
             </div>
+            <a href="proyecto-powerbi-letterboxd-dashboard.html" class="zona-derecha">
+                <div class="burbuja-flecha">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#F5E3BB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </a>
         </section>
 
         <section class="tarjeta project-card-layout">
@@ -127,6 +177,13 @@
                 </a>
                 <p>Using data from a property sales website and statistics, a model was developed to estimate property prices in different parts of Buenos Aires.</p>
             </div>
+            <a href="proyecto-python-bsas-real-state.html" class="zona-derecha">
+                <div class="burbuja-flecha">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#F5E3BB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </a>
         </section>
 
         <section class="tarjeta project-card-layout">
@@ -139,6 +196,13 @@
                 </a>
                 <p>Professional typesetting for academic research, featuring a scientific poster presented at the RAFA conference.</p>
             </div>
+            <a href="proyecto-latex-poster-RAFA.html" class="zona-derecha">
+                <div class="burbuja-flecha">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#F5E3BB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </a>
         </section>
 
 
@@ -152,6 +216,13 @@
                 </a>
                 <p>An interactive recommendation tool built in Power BI, utilizing custom criteria to filter movie datasets extracted with Python and SQL.</p>
             </div>
+            <a href="proyecto-powerbi-letterboxd-movie-filter.html" class="zona-derecha">
+                <div class="burbuja-flecha">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#F5E3BB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </a>
         </section>
 
         <section class="tarjeta project-card-layout">
@@ -164,6 +235,13 @@
                 </a>
                 <p>A simplify reference manual designed for data begginers, covering everything from fundamental operations to advanced analytical queries and performance optimization techniques.</p>
             </div>
+            <a href="proyecto-sql-quick-guide.html" class="zona-derecha">
+                <div class="burbuja-flecha">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#F5E3BB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </a>
         </section>
 
         <section class="tarjeta project-card-layout">
@@ -176,6 +254,13 @@
                 </a>
                 <p>An exploration of color palettes and visual hierarchy for data visualization in Python or any other program that uses HEX colors.</p>
             </div>
+            <a href="proyecto-python-color-theory.html" class="zona-derecha">
+                <div class="burbuja-flecha">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#F5E3BB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </a>
         </section>
 
         <div class="contenedor-boton-central" style="margin-top: 40px; margin-bottom: 20px;">

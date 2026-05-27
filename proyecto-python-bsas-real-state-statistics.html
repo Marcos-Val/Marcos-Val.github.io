@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More statistics about Real State</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .download-btn {
+            display: inline-block;
+            margin-top: 25px;
+            background-color: #854F0B;
+            color: #F5E3BB;
+            border: 1px solid #854F0B;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #F5E3BB;
+            color: #8d5614;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .img-placeholder {
+            width: 100%;
+            min-height: 300px;
+            background-color: #f0e6d3;
+            border: 2px dashed #854F0B;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #854F0B;
+            font-size: 1rem;
+            font-style: italic;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* --- NUEVO ESTILO PARA QUE LA IMAGEN NO SOBRESALGA --- */
+        .project-image {
+            max-width: 100%;       /* Evita que sea más ancha que su caja */
+            height: auto;          /* Mantiene las proporciones originales */
+            display: block;        /* Comportamiento de bloque */
+            margin: 20px auto;     /* 20px de espacio arriba/abajo y la centra */
+            border-radius: 10px;   /* Un borde redondeado para que haga juego con tus placeholders */
+        }
+    </style>
+</head>
+<body>
+    <header class="header-proyecto">
+        <h1>More Statistics about Real Estate</h1>
+        <a href="all-projects-menu.html" class="btn-back-header">← Back to All Projects</a>
+    </header>
+
+    <main class="contenedor-proyectos">
+
+        <section class="tarjeta proyecto-articulo">
+
+            <h2>Project Overview</h2>
+            <p>
+                This project is a direct continuation of the <strong>Buenos Aires Property Price Prediction Model</strong>, in which a multi-step non linear model was designed to estimate real estate prices based on a variety of property features. Building on that foundation, this study takes a deeper and more granular approach: rather than focusing solely on price prediction, here we analyze each relevant factor <em>independently</em>, exploring its distribution, behavior, and relationship with the final sale price.
+            </p>
+
+            <p>
+                In this case, we will focus on some of the ideas that led to the creation of the model and analyze some very specific, interesting factors unique to property sales in Buenos Aires.
+            </p>
+
+            <h2>General Review of Property Prices</h2>
+            <p>
+                A first look at the dataset shows a vast variety in the price range, as well as for the different types of properties for sale: houses, retail spaces, office buildings, land, etc.
+            </p>
+
+            <p>
+                To illustrate all this, we can observe the first map from left to right below, where only the prices of the different properties for sale were plotted. In it, you can see that there are regions that have a higher baseline cost due to their location. This is a first sign that house prices are affected by the neighborhood in which they are located.
+            </p>
+
+            <p>
+                To verify this, let's look at the second map, where we plotted the price per square meter (m&sup2;) for each of the homes. This way, the variability in the price range by region can be seen even more clearly.
+
+            </p>
+
+            <p>
+                This shows us that the concept of <strong>price per square meter</strong> becomes essential when analyzing properties across each of the neighborhoods. This leads to the idea of treating each neighborhood as a completely independent ecosystem, where any approach taken follows the cultural patterns of that specific neighborhood.
+            </p>
+
+            <p>
+                Just to show the impact that the dwelling has in relation to the neighborhood, let's look at the last map. In this case, what was plotted was the average price per square meter of <em>the entire neighborhood</em>. This allows us to identify at a glance which areas will be the most and least expensive to buy or build in.
+            </p>
+
+            <!-- Ruta de la imagen corregida con barras normales (/) -->
+            <img src="Images/real_state_statistcs/map.png" alt="Real Estate Price Map" class="project-image">
+
+            <h2>Surface per m²</h2>
+            <p>
+                The distribution of property surface area varies considerably depending on the zone. Within <strong>CABA (Ciudad Autónoma de Buenos Aires)</strong>, properties tend to be more compact, with a concentration of units in the 30–80 m² range, reflecting the prevalence of apartments in a dense urban environment. Outside of CABA, the distribution shifts noticeably toward larger surfaces, with a higher frequency of houses and properties exceeding 100 m².
+            </p>
+
+            <img src="Images\real_state_statistcs\surface-distribution.png" alt="Real Estate Price Map" class="project-image">
+
+            <p>
+                Returning to the <strong>price per square meter</strong>, when we analyze neighborhood by neighborhood, we see that this value is considerably higher for properties located in CABA, whereas for areas outside of it, this value is considerably lower. In fact, if we were to rank the price per square meter for each neighborhood, the neighborhood with the highest price per square meter in GBA and the Atlantic coast (areas that contain more than double the number of properties for sale) would only appear in the 20th position!
+            </p>
+
+            <p>
+                The chart below breaks down which are the most expensive neighborhoods in each of the zones.
+
+            </p>
+
+            <img src="Images\real_state_statistcs\price-m2-zone2.png" alt="Real Estate Price Map" class="project-image">
+
+            <h2>Bedrooms and Bathrooms</h2>
+            <p>
+                The number of bedrooms and bathrooms in a property is one of the most intuitive indicators of its size and intended use. Analyzing their individual distributions shows that the vast majority of listings fall in the 1–3 bedroom range, with 2-bedroom properties being by far the most common. Bathrooms follow a similar pattern, though single-bathroom properties are significantly more frequent, especially in smaller apartments.
+            </p>
+
+
+            <img src="Images\real_state_statistcs\bath-bedrooms-dist.png" alt="Rooms plot" class="project-image">
+
+            <p>
+                More interesting, however, is the relationship between these two variables and the total surface area. As expected, properties with more bedrooms and bathrooms tend to have larger surfaces — but the correlation is not always linear, and there is notable variability within each category. Some properties pack multiple bedrooms into a relatively small footprint, while others offer few rooms but generous total space. These relationships help reveal the different typologies present in the market and are important inputs for the predictive model.
+            </p>
+
+            <p>
+                In the chart below, these average relationships can be found plotted with 95% confidence intervals. This allows us to see the range within which we can find properties possessing these characteristics with this level of certainty.
+            </p>
+
+            <img src="Images\real_state_statistcs\Confidence-intervals.png" alt="Confidence Intervals plot" class="project-image">
+
+            
+            <h2>Amenities</h2>
+            <p>
+                Beyond the physical characteristics of a property, the presence of amenities — such as swimming pools, gyms, doorman service, parking spaces, or outdoor spaces — plays a meaningful role in determining its market value. Properties that offer a broader set of amenities consistently tend to command higher prices, even when controlling for surface area and location.
+            </p>
+          
+            <p>
+                In the image below, you can see the top 15 most common amenities for the two analyzed zones.
+            </p>
+
+            <img src="Images\real_state_statistcs\Facilities.png" alt="Facilities plot" class="project-image">
+
+            <p>
+                What we observe is that although there are cases where the proportion remains the same, there are other cases where this changes. For example, in the case of a 'Garage', 'Garden', or 'Patio', there is a clear tendency for these to exist in areas outside CABA due to the ease of finding large, unbuilt spaces in these locations.
+            </p>
+        </section>
+
+    </main>
+
+    <a href="all-projects-menu.html" class="boton-volver-lateral" id="backToHomeBtn">
+        <span style="font-size: 1.1em;">←</span> All Projects
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>

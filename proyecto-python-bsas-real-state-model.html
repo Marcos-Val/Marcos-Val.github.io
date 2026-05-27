@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Model for propertiesin Bs. As. | Marcos Val</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Ajuste para reducir el margen del texto en la tarjeta principal */
+        .tarjeta.proyecto-articulo {
+            padding-left: 100px !important;
+            padding-right: 100px !important;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 25px;
+            background-color: #854F0B; /* Brown background */
+            color: #F5E3BB; /* Cream text */
+            border: 1px solid #854F0B;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #F5E3BB; /* Inverts to cream */
+            color: #8d5614; /* Brown text */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .math-container {
+            text-align: left; /* Alineación a la izquierda */
+            overflow-x: auto;
+            /* Se usan márgenes negativos para que la caja sea más ancha que el texto */
+            margin: 20px -5%; 
+            padding: 15px 5%;
+            font-size: 1.1em; 
+        }
+
+        /* Regla para forzar a MathJax a alinear sus bloques a la izquierda */
+        mjx-container[jax="CHTML"][display="true"] {
+            text-align: left !important;
+            margin-left: 0 !important;
+        }
+
+        .variable-list {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .variable-list li {
+            margin-bottom: 8px;
+        }
+        
+        .project-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+        /* Clase especial para centrar ecuaciones individuales */
+        .math-container.centrada {
+            text-align: center !important;
+        }
+
+        .math-container.centrada mjx-container[jax="CHTML"][display="true"] {
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="header-proyecto">
+        <h1>Predictive Model for propertiesin Bs. As.</h1>
+        <a href="index.html" class="btn-back-header">← Back to Home</a>
+    </header>
+
+    <main class="contenedor-proyectos">
+        <section class="tarjeta proyecto-articulo">
+            <h2>Project Overview</h2>
+            <p>This project focuses on the study of property sales across Buenos Aires, Greater Buenos Aires, and the Atlantic Coast, utilizing information from various real estate portals such as Zonaprop and Properati, among others.</p>
+            
+            <p>A non-linear model was successfully developed to predict their prices in different areas by leveraging various features provided by each seller and performing statistical analysis on sets of these features.</p>
+
+            <p>This project aims not only to predict the price of these properties but also to identify overestimated and underestimated prices, recognize negotiation opportunities, as well as spot potential fraud, among many other applications.</p>
+            
+            <h2>How we turn messy data into someting usefull?</h2>
+
+            <p>To begin with, one of the first approaches one can take to predict property prices is to use a linear model by solely observing the average price per square meter and the total square meters of the property. If we do this and plot the results, we will obtain a distorted and messy first approximation of the data, as shown in the image—<em>which is incredibly chaotic!</em></p>
+            
+            <img src="Images\real_state_bsas_model\real_estate_market_updated_clean_v3.png" alt="" class="project-image">
+            
+            <p>One of the first conclusions we can draw from looking at this graph is that a property's price cannot be uniquely estimated by its value per square meter and its total area. There are several factors that can cause this value to increase or decrease: ranging from the neighborhood or area where it is located, the distribution of covered and uncovered areas, the age of the property, the amenities it possesses, etc.</p>
+            
+            <p>To learn a bit more about all of these, they are detailed <a href="proyecto-python-bsas-real-state-statistics.html">here</a>.</p>
+
+            <h2>About the Model</h2>
+
+            <p>To understand how the model works, it is essential to know the information collected in the dataset for its use. This dataset contains information not only about the sale price, areas (total, covered, and uncovered), and property type, but also the exact location of each analyzed property (not just latitude and longitude, but they are also divided with unique tags to group them by regions, neighborhoods, and/or specific localities).</p>
+
+            <p>It also contains information regarding the number of rooms, bathrooms, and the overall condition of the property.</p>
+
+            <p>In turn, each property keeps a record of over sixty possible unique features listed by the sellers, which we refer to as amenities. A single property usually does not contain even a third of all the tracked features, so the way we implement these variables into the model will add robustness and allow us to improve the model's accuracy.</p>
+
+            <p>This will be explained in greater detail later, but a primary characteristic of using so many variables is that <em>not possessing some of these features will not affect the property's price prediction, either for better or for worse. However, this large number of variables allows us to evaluate behaviors in specific areas that will indeed vary the price for possessing these features</em>.</p>
+
+            <p>All these features were collected in a way that makes them easily recognizable across the different real estate portals.</p>
+            
+            <p>The equation that allows us to estimate the prices is the following:</p>
+
+            <div class="math-container centrada">
+                $$ \hat{P}_i = M_{z,t} \left(  S_{cov} + \alpha S_{uncov}\right) \exp\left\{ \beta_{0,z} + \sum_{j=1}^{K} \beta_{j,z}  \left[ \frac{x_{i,j}}{\max(|X_{j,z}|)} \right] \cdot W_{j,z} \right\} $$
+            </div>
+
+            <ul class="variable-list">
+                <li><strong>\(\hat{P}_i\)</strong>: Represents the estimated total price for property \(i\).</li>
+                <li><strong>\(M_{z,t}\)</strong>: The base or reference value (price per square meter) of zone \(z\) and type of property \(t\).</li>
+                <li><strong>\(S_{cov}, S_{land}\)</strong>: Covered surface and total land surface (generally treated with logarithms to smooth variances).</li>
+                <li><strong>\(\beta_{0,z}\)</strong>: Model intercept or baseline bias calibrated for zone \(z\).</li>
+                <li><strong>\(\beta_{j,z}\)</strong>: Statistical adjustment coefficient corresponding to feature \(j\) in zone \(z\).</li>
+                <li><strong>\(x_{i,j}\)</strong>: Specific value of feature \(j\) observed in property \(i\).</li>
+                <li><strong>\(\max(|X_{j,z}|)\)</strong>: Normalization factor, corresponding to the maximum absolute value of variable \(j\) in zone \(z\).</li>
+                <li><strong>\(W_{j,z}\)</strong>: Standardized weight assigned to feature \(j\) to regulate its impact on the model using Machine Learning.</li>
+            </ul>
+
+            <p>To represent the individual characteristics of each property in a structured manner, the input variable vector \(X_i\) is constructed. This vector captures multiple dimensions of the property, organized into categories ranging from surface metrics to textual analysis of building amenities:</p>
+
+            <div class="math-container">
+                $$
+                \begin{aligned}
+                X_i = \Bigg[ 
+                & \underbrace{\text{Year}_{con}, (\text{Year}_{con})^2, D_{new}, D_{null\_age}}_{\text{1. Temporal Structure (4 variables)}}, \\
+                & \underbrace{\ln(1 + \text{Dorm}), D_{null\_dorm}, \ln(1 + \text{Bath}), D_{null\_bath}}_{\text{2. Functional Structure (4 variables)}}, \\
+                & \style{font-size: 15%}{\underbrace{\left[ \ln(1+\text{Bath}) \cdot \ln S_{cov}\right], \left[\ln(1+\text{Dorm}) \cdot \ln S_{cov}\right], \left[\frac{\text{Bath}}{\max(1, \text{Dorm})}\right], \ln\left[\frac{S_{cov}}{\max(1, \text{Dorm})}\right], (S_{uncov} \cdot D_{House})}_{\text{3. Synergies & Functional Saturation (5 variables)}}}, \\
+                & \underbrace{\sum_{c=1}^{8} D_{cond} \, ,}_{\text{4. Condition Dummies (8 variables)}} \\
+                & \underbrace{\sum_{a=1}^{44} D_{fac} + D_{null\_fac}}_{\text{5. Amenities Textual Filter (45 variables)}} 
+                \Bigg]
+                \end{aligned}
+                $$
+            </div>
+
+            <ul class="variable-list">
+                <li><strong>\(\text{Year}_{con}\)</strong>: Construction year of the property to evaluate depreciation.</li>
+                <li><strong>\(\text{Dorm, Bath}\)</strong>: Number of bedrooms and bathrooms, including interaction variables (functional synergies).</li>
+                <li><strong>\(D_{x}\)</strong>: Indicator dummy variables (e.g., \(D_{new}\) for brand new properties, \(D_{cond\_c}\) for property condition categories).</li>
+                <li><strong>\(D_{fac\_a}\)</strong>: Set of dummy variables extracted from text indicating the presence of 44 different types of amenities (pool, multi-purpose room, security, etc.).</li>
+            </ul>
+            
+            <p>The way the model works is as follows: first, it identifies all the rows that will be used for the analysis. In our case study, we took properties categorized as 'Departamento', 'Casa', 'Penthouse' (PH), and 'Casa de quinta'. All of these are non-commercial properties, but this could be extended to more property types (office buildings, shops, land lots, etc.).</p>
+
+            <p>The variables to be used in the model are defined, and a Random Forest is applied to 80% of these properties to assign a weight to each of these variables. This not only helps adjust the coefficients to be determined by the model, but it also serves as a first filter to know which variables will be more influential than others.</p>
+
+            <p>Once this is done, the value of \(M_{z,t}\) is calculated for each of the neighborhoods and property types.</p>
+
+            <p>Next, an adjustment is made using Huber Regression to properly handle outliers by assigning them an appropriate weight. This is done in each neighborhood and for every property type available. With this, all the \(\beta\) coefficients are calculated by performing statistical analysis in each neighborhood. Finally, once all the model's coefficients are obtained, the predicted price is calculated and compared with the real one to compute the <em>Absolute Percentage Error (APE)</em>. The mean value of all these gives us the overall average error of the model, the <em>MAPE</em>.</p>
+
+            <p>To estimate the value of \(\alpha\), we observed how the different variables reacted and how the global error varied for different values of \(\alpha\). It was observed that the value that minimized the error without losing logical coherence was \(\alpha=2\); for values greater than this, the error tends to an asymptotic value that does not differ from the one previously set.</p>
+
+            <h2>Results</h2>
+
+            <p>The results shown correspond to the error distributions (the APE) for each of the analyzed properties. What can be observed is that by using a large part of the features presented in the property listings, it is possible to estimate the price of each property by comparing them with properties in the same region or containing similar qualities. This opens up the possibility of spotting business opportunities, either because a property's price does not match that of its neighbors with similar properties, or by finding bargains when a property's price has been underestimated.</p>
+
+            <p>It is important to highlight the fact that a listed property should be under 'normal' conditions—that is, the seller provides as much information as possible—since the more detailed the property description is, the easier it will be for the model to estimate the price.</p>
+                        
+            <img src="Images\real_state_bsas_model\MAPE.png" alt="" class="project-image">
+
+            <h3>Next Steps & Future Work</h3>
+
+            <p>As mentioned earlier, this project has several areas where it can be improved. Among these improvements, we have:</p>
+
+            <ul>
+                <li>The dataset can be expanded by collecting information from other real estate portals to improve the model's statistics by zone.</li>
+                <li>The collected data is up to May 2026 and lacks updating capabilities, so automating the data collection would improve the statistics.</li>
+                <li>Incorporate new zones by expanding to different provinces like Santa Fe or Cordoba, where data is available in the analyzed portals.</li>
+                <li>Successfully analyze the sellers' descriptions in a robust manner to identify keywords that allow not only to fill gaps in the dataset but also to identify important variables that were not considered in the model due to a lack of information in different portals (such as the property's orientation).</li>
+                <li>Lastly, the development of a new portal so that any user can paste the link of the property they wish to analyze, allowing it to return a report on its estimated price. This also allows for saving new records and opens up the possibility of an automatic update of the dataset if incorporated correctly.</li>
+            </ul>
+        </section>
+    </main>
+
+    <a href="index.html" class="boton-volver-lateral" id="backToHomeBtn">
+        <span style="font-size: 1.1em;">←</span> Back to Home
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>

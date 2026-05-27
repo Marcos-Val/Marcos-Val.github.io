@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Template for Dashboards | Marcos Val</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ============================================================ */
+        /* Download button — centered below each template image         */
+        /* ============================================================ */
+        .project-feature-image-wrapper {
+            flex: 0 0 60%;
+            max-width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .project-feature-image-wrapper .project-feature-image {
+            flex: unset;
+            max-width: unset;
+            width: 100%;
+        }
+
+        .btn-download-template {
+            display: inline-block;
+            background-color: #854F0B;
+            color: #F5E3BB;
+            border: 1px solid #854F0B;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-download-template:hover {
+            background-color: #F5E3BB;
+            color: #854F0B;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Keep the wrapper's width consistent when the row is reversed */
+        .project-feature.reverse .project-feature-image-wrapper,
+        .project-feature:nth-child(even) .project-feature-image-wrapper {
+            flex: 0 0 60%;
+            max-width: 60%;
+        }
+
+        /* Divider between templates */
+        .template-divider {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 10px 0 50px 0;
+        }
+
+        /* Section subtitle for "Templates" */
+        .proyecto-articulo h2.templates-title {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header-proyecto">
+        <h1>Excel Template for Dashboards</h1>
+        <a href="all-projects-menu.html" class="btn-back-header">← Back to All Projects</a>
+    </header>
+
+    <main class="contenedor-proyectos">
+        <section class="tarjeta proyecto-articulo">
+
+            <!-- ── PROJECT OVERVIEW ─────────────────────────────────── -->
+            <h2>Project Overview</h2>
+            <p>
+                A well-designed dashboard should do more than display numbers — it should tell a story at a glance. 
+                This collection of Excel templates was built with that principle in mind: each file combines 
+                clean data-entry sheets, automated calculations, and carefully crafted visualizations so that 
+                anyone can drop in their own data and immediately get actionable insights. No macros, no complex 
+                setup — just open, paste, and explore. Whether you need to track sales figures, monitor project 
+                progress, or keep an eye on financial KPIs, there is a template here ready to adapt to your workflow.
+            </p>
+
+            <!-- ── TEMPLATES ────────────────────────────────────────── -->
+            <h2 class="templates-title">Templates</h2>
+
+            <div style="margin-top: 40px;">
+
+                <!-- Template 1 -->
+                <div class="project-feature">
+                    <div class="project-feature-image-wrapper">
+                        <div class="project-feature-image">
+                            <img src="Images\excel-templates\template1.png"
+                                 alt="Sales Performance Dashboard preview">
+                        </div>
+                        <a href="Proyectos\excel-templates\Plantilla1.xlsx"
+                           class="btn-download-template" download>
+                            ↓ Download Template
+                        </a>
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>1. Dark KPI Dashboard</h3>
+                        <p>
+                            A modular dark-themed dashboard built to monitor key business metrics at a glance. 
+                            It combines a circular progress gauge, trend line charts, a histogram, and branded KPI cards 
+                            — all fully customizable to your own data. Ideal for executive summaries or weekly performance
+                             reviews where visual impact matters as much as the numbers.
+                        </p>
+                    </div>
+                </div>
+
+                <hr class="template-divider">
+
+                <!-- Template 2 -->
+                <div class="project-feature reverse">
+                    <div class="project-feature-image-wrapper">
+                        <div class="project-feature-image">
+                            <img src="Images\excel-templates\template2.png"
+                                 alt="Project Management Tracker preview">
+                        </div>
+                        <a href="Proyectos\excel-templates\Plantilla2.xlsx"
+                           class="btn-download-template" download>
+                            ↓ Download Template
+                        </a>
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>2. Category Breakdown Dashboard</h3>
+                        <p>
+                            A minimal, purple-toned layout designed to highlight proportional data across categories.
+                            The multi-ring donut chart makes it easy to compare performance segments, while the KPI card
+                            and sparkline keep the main metric front and center. Best suited for market share analysis,
+                            survey results, or any dataset where distribution tells the story.
+                        </p>
+                    </div>
+                </div>
+
+                <hr class="template-divider">
+
+                <!-- Template 3 -->
+                <div class="project-feature">
+                    <div class="project-feature-image-wrapper">
+                        <div class="project-feature-image">
+                            <img src="Images\excel-templates\template3.png"
+                                 alt="Financial KPI Dashboard preview">
+                        </div>
+                        <a href="Proyectos\excel-templates\Plantilla3.xlsx"
+                           class="btn-download-template" download>
+                            ↓ Download Template
+                        </a>
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>3. Sales & Operations Dashboard</h3>
+                        <p>
+                            A comprehensive teal dashboard covering the full commercial picture:
+                            quarterly revenue vs. target, ad spend efficiency, product mix evolution,
+                            web traffic, and conversion funnel — all in one screen. Built for teams that need to monitor
+                            multiple business areas simultaneously without switching between reports.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <a href="all-projects-menu.html" id="backToHomeBtn" class="boton-volver-lateral">
+        <span style="font-size: 1.1em;">←</span> Back to All Projects
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
